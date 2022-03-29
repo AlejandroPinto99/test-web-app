@@ -13,7 +13,7 @@ const customersApi = baseStoreApi.injectEndpoints({
       providesTags: (result, error, arg) => {
         return mapProvidedTag(result ?? [], CacheTagsEnum.Customer, "stripeId");
       },
-      transformResponse: (response) => response.result,
+      transformResponse: (response) =>  response.result,
     }),
     getCustomer: builder.query<CustomerResultData, number>({
       query: (id) => ({ url: `/customer/${id}` }),

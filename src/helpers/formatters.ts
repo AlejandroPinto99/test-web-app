@@ -49,7 +49,7 @@ export function formatPhone(phone: string) {
   return USNumber ? `+1 ${USNumber[1]} ${USNumber[2]} ${USNumber[3]}` : phone;
 }
 
-export function formatCapitalizeFirstLetter(text: string) {
+export function formatCapitalizeFirstLetter(text?: string) {
   const textToFormat = text ?? "";
   return textToFormat.charAt(0).toUpperCase() + textToFormat.slice(1);
 }

@@ -2,11 +2,8 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import { baseStoreApi } from "./storeApi";
 import { configReducer } from "./reducers/config";
+import  localStorage  from "redux-persist/es/storage";
 
-const persistConfig = {
-  key: "root",
-  whitelist: ["config"],
-};
 
 const reducers = combineReducers({
   //auth: authReducer,
@@ -14,19 +11,17 @@ const reducers = combineReducers({
   [baseStoreApi.reducerPath]: baseStoreApi.reducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: reducers,
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(baseStoreApi.middleware),
 });
 
-const storePersist = persistStore(store);
 
-export { store, storePersist };
+export { store };
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

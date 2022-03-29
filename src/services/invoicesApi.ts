@@ -1,9 +1,7 @@
 import { baseStoreApi } from "../store/storeApi";
-import moment from "moment";
 import { InputSelectData } from "../components/InputSelect";
 import { DateHelper } from "../helpers/dateHelper";
 import { CacheTagsEnum } from "../enums/cache-tags-enum";
-import { PaymentStatusEnum, PaymentTypeEnum } from "../enums/payment-enum";
 import { mapProvidedTag } from "../helpers/rtkQueryHelper";
 import { PaymentResultData } from "./paymentsApi";
 import { InvoiceTypeEnum } from "../enums/invoice-enum";
@@ -13,7 +11,7 @@ const invoiceApi = baseStoreApi.injectEndpoints({
     getInvoices: build.query<PaymentResultData[], InvoiceParamData | void>({
       query: (arg) => {
         const params = {
-          lastInvoiceId: arg?.lastInvoiceId,
+          lastInvoiceId: arg? arg?.lastInvoiceId: undefined,
         };
         return { url: "/invoice", params };
       },

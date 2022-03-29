@@ -47,7 +47,7 @@ const DateHelper = {
     else if (weekDay === "sat") return "Saturday";
     return "Sunday";
   },
-  get24hTimeFromDate: (date: string | Date) => {
+  get24hTimeFromDate: (date?: string | Date) => {
     return moment(date).format("HH:mm");
   },
   isSameAsToday: (date: string | Date) => {
@@ -87,7 +87,7 @@ const DateHelper = {
     date: Date,
     precision: unitOfTime.StartOf = "days"
   ) => moment().isAfter(date, precision),
-  getDifferenceCurrentAndGivenDateInDays: (givenDate: Date | string) => {
+  getDifferenceCurrentAndGivenDateInDays: (givenDate?: Date | string) => {
     const givenDateMoment = moment(givenDate);
     if (
       !givenDateMoment.isValid() &&

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 //Material UI components
 import Container from '@material-ui/core/Container'
@@ -19,9 +19,8 @@ import {formatCentsToDollars} from '../helpers/formatters'
 //Hook
 import { useGetCustomersQuery }  from '../services/customersApi'
 
-export interface SearchSectionProps{
+export interface ClientListProps{
     title: string;
-    height: number;
     placeholder: string;
 }
 
@@ -34,16 +33,18 @@ export interface ClientProps{
 const Client: React.FC<ClientProps> = ({name, email, revenue = 0}) => { 
 
     return(
-      <Box component="div" sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', mb: '1rem'}}>
-          
-          <Box sx={{border: '1px solid rgba(216, 194, 149, 1)', borderRadius:'100%', marginRight: '2rem', boxShadow: '10px'}}>
-              <Typography component="p" style={{ fontSize: '1rem', fontWeight: '500', padding: '15px 17px'}}>CN</Typography>
+      <Box component="div" sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
+        <Box sx={{display: 'flex', flexDirection: 'row'}}>
+            <Box sx={{border: '1px solid rgba(216, 194, 149, 1)', borderRadius:'100%', boxShadow: '10px', ml: '2rem'}}>
+                <Typography component="p" style={{ fontSize: '1.2rem', fontWeight: '600', padding: '15px 17px'}}>CN</Typography>
+            </Box>
+
+            <Box sx={{ml: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'start'}}>
+                <Typography component="h4" style={{fontSize: '1.5rem', fontWeight: '600'}}>{name}</Typography>
+                <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)'}}>{email}</Typography>
+            </Box>
           </Box>
-          <Box sx={{mr: '2rem'}}>
-              <Typography component="h4" style={{fontSize: '1.2rem', fontWeight: '600'}}>{name}</Typography>
-              <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)'}}>{email}</Typography>
-          </Box>
-          <Box sx={{display: 'flex', flexDirection: 'column', ml: '2rem'}}>
+          <Box sx={{display: 'flex', flexDirection: 'column', ml: '2rem', mr: '1rem'}}>
               <Typography component="span" style={{fontWeight: '600', fontSize: '1.5rem', textAlign:'right'}}>$ {formatCentsToDollars(revenue)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
               <Typography component="span" style={{textAlign: 'right', color: 'rgba(163, 163, 163, 1)'}}>Revenue</Typography>
           </Box>
@@ -51,17 +52,13 @@ const Client: React.FC<ClientProps> = ({name, email, revenue = 0}) => {
     )
 }
 
-const SearchSection: React.FC<SearchSectionProps> = ({title, height, placeholder}) => {
+const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
     const {
         data: customers,
         isLoading: isLoadingCustomers,
         refetch: refetchCustomers
     } = useGetCustomersQuery(); 
     
-    console.log("results:", customers)
-    console.log("isLoadingCustomer: ",isLoadingCustomers);
-    console.log("refetch:", refetchCustomers)
-
     return(
         <Container maxWidth="sm">
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', mb: '1rem'}}>
@@ -108,5 +105,5 @@ const SearchSection: React.FC<SearchSectionProps> = ({title, height, placeholder
     )
 }
 
-export default SearchSection;
+export default ClientList;
 

@@ -21,7 +21,7 @@ import { createTheme } from '../theme';
 import { createEmotionCache } from '../utils/create-emotion-cache';
 import '../i18n';
 
-import './clientList.css'
+import './scrollbarStyle.css'
 
 Router.events.on('routeChangeStart', nProgress.start);
 Router.events.on('routeChangeError', nProgress.done);

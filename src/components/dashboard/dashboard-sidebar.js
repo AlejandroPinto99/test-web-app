@@ -3,14 +3,9 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Box, Button, Chip, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
-import { Calendar as CalendarIcon } from '../../icons/calendar';
-import { Cash as CashIcon } from '../../icons/cash';
+import { Box, Divider, Drawer, useMediaQuery } from '@mui/material';
 import { ChartBar as ChartBarIcon } from '../../icons/chart-bar';
 import { ChartPie as ChartPieIcon } from '../../icons/chart-pie';
-import { ChatAlt2 as ChatAlt2Icon } from '../../icons/chat-alt2';
-import { ClipboardList as ClipboardListIcon } from '../../icons/clipboard-list';
-import { CreditCard as CreditCardIcon } from '../../icons/credit-card';
 import { Home as HomeIcon } from '../../icons/home';
 import { LockClosed as LockClosedIcon } from '../../icons/lock-closed';
 import { Mail as MailIcon } from '../../icons/mail';
@@ -25,11 +20,16 @@ import { ShoppingCart as ShoppingCartIcon } from '../../icons/shopping-cart';
 import { Truck as TruckIcon } from '../../icons/truck';
 import { UserCircle as UserCircleIcon } from '../../icons/user-circle';
 import { Users as UsersIcon } from '../../icons/users';
-import { XCircle as XCircleIcon } from '../../icons/x-circle';
 import { Logo } from '../logo';
 import { Scrollbar } from '../scrollbar';
 import { DashboardSidebarSection } from './dashboard-sidebar-section';
 import { OrganizationPopover } from './organization-popover';
+
+//Icons
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import PaidIcon from '@mui/icons-material/Paid';
+import SpeedIcon from '@mui/icons-material/Speed';
+import PersonalIDIcon from '../../icons/PersonalIDcon';
 
 const getSections = (t) => [
   {
@@ -37,23 +37,23 @@ const getSections = (t) => [
     items: [
       {
         title: t('Financial'),
-        path: '/dashboard',
-        icon: <HomeIcon fontSize="small" />
+        path: '/',
+        icon: <AccountBalanceIcon  style={{fontSize: '2rem'}} />
       },
       {
         title: t('Bussines'),
-        path: '/dashboard',
-        icon: <ChartBarIcon fontSize="small" />
+        path: '/',
+        icon: <PaidIcon style={{fontSize: '2rem'}} />
       },
       {
         title: t('Tax Vault'),
-        path: '/dashboard',
-        icon: <ChartPieIcon fontSize="small" />
+        path: '/',
+        icon: <SpeedIcon style={{fontSize: '2rem'}}  />
       },
       {
         title: t('Personal Card'),
-        path: '',
-        icon: <TruckIcon fontSize="small" />
+        path: '/',
+        icon: <PersonalIDIcon style={{fontSize: '2rem'}} />
       }
     ]
   },
@@ -62,22 +62,22 @@ const getSections = (t) => [
     items: [
       {
         title: t('My Store'),
-        path: '/dashboard',
+        path: '/',
         icon: <HomeIcon fontSize="small" />
       },
       {
         title: t('Manage Services'),
-        path: '/dashboard',
+        path: '/',
         icon: <ChartBarIcon fontSize="small" />
       },
       {
         title: t('Create Invoice'),
-        path: '/dashboard',
+        path: '/',
         icon: <ChartPieIcon fontSize="small" />
       },
       {
         title: t('My Clients List'),
-        path: '/dashboard',
+        path: '/',
         icon: <TruckIcon fontSize="small" />
       }
     ]

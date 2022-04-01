@@ -46,8 +46,6 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
         isLoading: isLoadingPayments,
         refetch: refetchPayments
     } = useGetPaymentsQuery(); 
-
-    console.log("payments", payments)
    
     return(
         <Container maxWidth="sm">
@@ -70,7 +68,7 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
                 <Typography  variant="h5" component="h2" style={{marginRight: '2rem', fontWeight: 600, fontSize: '2rem'}}>{title}</Typography>
             </Box>
 
-            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '2rem',}}>
+            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '2rem', mb: '2rem'}}>
                 <Stack sx={{ width: '90%', height: '300px', 
                 boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
                 borderRadius: '20px', overflow: "hidden", overflowY: 'scroll'}}>

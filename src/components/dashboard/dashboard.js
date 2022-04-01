@@ -53,54 +53,31 @@ const Overview = () => {
           Dashboard
         </title>
       </Head>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: -1,
-          ml: 15
-        }}
-      >
+      <Box component="main" sx={{flexGrow: 1, py: -1, ml: 15}}>
         <Container maxWidth="xl">
-          <Box sx={{ mb: 4 }}>
-            <Grid
-              container
-              justifyContent="space-between"
-              spacing={3}
-            >
-              <Grid item>
-                <Typography variant="h4" sx={{fontWeight: '500'}}>
-                  Good Morning
-                </Typography>
-              </Grid>
-            </Grid>
-          </Box>
           <Grid container spacing={4}>
             <Grid item md={8} xs={12}>
+                <Box sx={{ mb: 4, ml: 2}}>
+                  <Typography variant="h4" style={{fontWeight: '500'}}>
+                    Good Morning
+                  </Typography>
+                </Box>
                 <Revenue />           
                 <StatisticsContainer />
             </Grid>
-            <Grid
-              item
-              md={4}
-              xs={12}
-            >
-              <ClientList title="Your Recent Clients" placeholder="Search in all Persona"/>
+
+            <Grid item md={4} xs={12}>
+                <ClientList title="Your Recent Clients" placeholder="Search in all Persona"/>
             </Grid>
-            <Grid
-              item
-              md={8}
-              xs={12}
-            >
-             {/* <OverviewLatestTransactions /> */}
+
+            <Grid item md={8} xs={12}>
+             <p>Here goes the graphic</p>
             </Grid>
-            <Grid
-              item
-              md={4}
-              xs={12}
-            >
-              <PaymentsList title="Your Buisiness Payments" placeholder="Search a Payment" />
+
+            <Grid item md={4} xs={12}>
+              <PaymentsList title="Your Buisiness Payments" placeholder="Search a Payment" />   
             </Grid>
+
           </Grid>
         </Container>
       </Box>
@@ -116,3 +93,5 @@ Overview.getLayout = (page) => (
 );
 
 export default Overview;
+
+

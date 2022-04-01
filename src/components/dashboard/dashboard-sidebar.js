@@ -4,22 +4,6 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Box, Divider, Drawer, useMediaQuery } from '@mui/material';
-import { ChartBar as ChartBarIcon } from '../../icons/chart-bar';
-import { ChartPie as ChartPieIcon } from '../../icons/chart-pie';
-import { Home as HomeIcon } from '../../icons/home';
-import { LockClosed as LockClosedIcon } from '../../icons/lock-closed';
-import { Mail as MailIcon } from '../../icons/mail';
-import { MailOpen as MailOpenIcon } from '../../icons/mail-open';
-import { Newspaper as NewspaperIcon } from '../../icons/newspaper';
-import { OfficeBuilding as OfficeBuildingIcon } from '../../icons/office-building';
-import { ReceiptTax as ReceiptTaxIcon } from '../../icons/receipt-tax';
-import { Selector as SelectorIcon } from '../../icons/selector';
-import { Share as ShareIcon } from '../../icons/share';
-import { ShoppingBag as ShoppingBagIcon } from '../../icons/shopping-bag';
-import { ShoppingCart as ShoppingCartIcon } from '../../icons/shopping-cart';
-import { Truck as TruckIcon } from '../../icons/truck';
-import { UserCircle as UserCircleIcon } from '../../icons/user-circle';
-import { Users as UsersIcon } from '../../icons/users';
 import { Logo } from '../logo';
 import { Scrollbar } from '../scrollbar';
 import { DashboardSidebarSection } from './dashboard-sidebar-section';
@@ -30,6 +14,10 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PaidIcon from '@mui/icons-material/Paid';
 import SpeedIcon from '@mui/icons-material/Speed';
 import PersonalIDIcon from '../../icons/PersonalIDcon';
+import Store from '../../icons/Store';
+import ManageIcon from '../../icons/ManageIcon';
+import CreateInvoiceIcon from '../../icons/CreateInvoiceIcon';
+import MyClientIcon from '../../icons/MyClientsIcon';
 
 const getSections = (t) => [
   {
@@ -63,22 +51,22 @@ const getSections = (t) => [
       {
         title: t('My Store'),
         path: '/',
-        icon: <HomeIcon fontSize="small" />
+        icon: <Store style={{fontSize: '2rem'}} />
       },
       {
         title: t('Manage Services'),
         path: '/',
-        icon: <ChartBarIcon fontSize="small" />
+        icon: <ManageIcon style={{fontSize: '2rem'}} />
       },
       {
         title: t('Create Invoice'),
         path: '/',
-        icon: <ChartPieIcon fontSize="small" />
+        icon: <CreateInvoiceIcon style={{fontSize: '2rem'}} />
       },
       {
         title: t('My Clients List'),
         path: '/',
-        icon: <TruckIcon fontSize="small" />
+        icon: <MyClientIcon style={{fontSize: '2rem'}} />
       }
     ]
   },
@@ -119,21 +107,8 @@ export const DashboardSidebar = (props) => {
 
   const content = (
     <>
-      <Scrollbar
-        sx={{
-          height: '100%',
-          '& .simplebar-content': {
-            height: '100%'
-          }
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%'
-          }}
-        >
+      <Scrollbar sx={{height: '100%','& .simplebar-content': {height: '100%'}}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', height: '100%'}}>
           <div>
             <Box sx={{ pt: 4, pl: 4}}>
               <NextLink
@@ -171,35 +146,6 @@ export const DashboardSidebar = (props) => {
                 {...section} />
             ))}
           </Box>
-         
-          {/* <Box sx={{ p: 2 }}>
-            <Typography
-              color="neutral.100"
-              variant="subtitle2"
-            >
-              {t('Need Help?')}
-            </Typography>
-            <Typography
-              color="neutral.500"
-              variant="body2"
-            >
-              {t('Check our docs')}
-            </Typography>
-            <NextLink
-              href="/docs/welcome"
-              passHref
-            >
-              <Button
-                color="secondary"
-                component="a"
-                fullWidth
-                sx={{ mt: 2 }}
-                variant="contained"
-              >
-                {t('Documentation')}
-              </Button>
-            </NextLink>
-          </Box> */}
         </Box>
       </Scrollbar>
       <OrganizationPopover

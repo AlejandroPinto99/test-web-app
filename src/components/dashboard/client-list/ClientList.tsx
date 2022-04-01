@@ -59,11 +59,9 @@ const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
         isLoading: isLoadingCustomers,
         refetch: refetchCustomers
     } = useGetCustomersQuery(); 
-
-    console.log("customers", customers)
     
     return(
-        <Container maxWidth="sm">
+        <Container maxWidth="sm" >
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', mb: '1rem'}}>
                 <TextField
                 id="serach_box"
@@ -86,13 +84,13 @@ const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
             </Box>
 
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <Typography  variant="h5" component="h2" style={{marginRight: '2rem', fontWeight: 600, fontSize: '2rem'}}>{title}</Typography>
-                <Typography variant="body1" component="p" style={{marginLeft: '2rem', marginRight: '0.5rem', color: 'rgba(82, 82, 82, 1)'}} >  See Full List   </Typography>
+                <Typography  variant="h5" component="h2" style={{marginRight: '2rem', fontWeight: 600, fontSize: '1.8rem'}}>{title}</Typography>
+                <Typography variant="body1" component="p" style={{marginLeft: '2rem', marginRight: '0.5rem', color: 'rgba(82, 82, 82, 1)', cursor: 'pointer'}} >  See Full List   </Typography>
                 <ArrowForwardIcon sx={{color: 'rgba(216, 194, 149, 1)', fontSize: 25, cursor: 'pointer'}} />
             </Box>
 
            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '2rem',}}>
-                <Stack sx={{ width: '90%', height: '300px', 
+                <Stack sx={{ width: '85%', height: '300px', 
                 boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
                 borderRadius: '20px', overflow: "hidden", overflowY: 'scroll'}} className="">
                     {

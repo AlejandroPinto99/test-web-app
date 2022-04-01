@@ -49,7 +49,11 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
    
     return(
         <Container maxWidth="sm">
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', mb: '1rem'}}>
+            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'start'}}>
+                <Typography  variant="h5" component="h2" style={{marginLeft: '2.5rem', fontWeight: 600, fontSize: '1.8rem', }}>{title}</Typography>
+            </Box>
+
+            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'start', mb: '1rem', ml: '2.5rem'}}>
                 <TextField
                     id="outlined-textarea"
                     placeholder={placeholder}
@@ -64,13 +68,9 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
                 }/>
             </Box>
 
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <Typography  variant="h5" component="h2" style={{marginRight: '2rem', fontWeight: 600, fontSize: '2rem'}}>{title}</Typography>
-            </Box>
-
             <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '2rem', mb: '2rem'}}>
-                <Stack sx={{ width: '90%', height: '300px', 
-                boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+                <Stack sx={{ width: '85%', height: '300px', height: '35rem',
+                boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)', 
                 borderRadius: '20px', overflow: "hidden", overflowY: 'scroll'}}>
                     {
                         !isLoadingPayments && (payments?.map((payment, i) => {

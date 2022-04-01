@@ -1,5 +1,4 @@
 import { CacheTagsEnum } from "../enums/cache-tags-enum";
-import { PaymentStatusEnum, PaymentTypeEnum } from "../enums/payment-enum";
 import { StatusEnum } from "../enums/status-enum";
 import { mapProvidedTag } from "../helpers/rtkQueryHelper";
 import { baseStoreApi } from "../store/storeApi";

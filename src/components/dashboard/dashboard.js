@@ -14,11 +14,10 @@ import {
   Typography
 } from '@mui/material';
 import { DashboardLayout } from './dashboard-layout';
-import { OverviewLatestTransactions } from './overview/overview-latest-transactions';
-import { OverviewTotalTransactions } from './overview/overview-total-transactions';
-
 import {ClientList} from './client-list/ClientList'
 import {PaymentsList} from './payments-list/PaymentList'
+import {Revenue} from './your-revenue/Revenue'
+import {StatisticsContainer} from './bussiness-statistics/statistics-container'
 
 
 
@@ -74,19 +73,12 @@ const Overview = () => {
                   Good Morning
                 </Typography>
               </Grid>
-            
             </Grid>
           </Box>
-          <Grid
-            container
-            spacing={4}
-          >
-            <Grid
-              item
-              md={8}
-              xs={12}
-            >
-              <OverviewTotalTransactions />
+          <Grid container spacing={4}>
+            <Grid item md={8} xs={12}>
+                <Revenue />           
+                <StatisticsContainer />
             </Grid>
             <Grid
               item
@@ -100,7 +92,7 @@ const Overview = () => {
               md={8}
               xs={12}
             >
-              <OverviewLatestTransactions />
+             {/* <OverviewLatestTransactions /> */}
             </Grid>
             <Grid
               item

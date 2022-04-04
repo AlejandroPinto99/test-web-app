@@ -53,10 +53,9 @@ const Overview = () => {
           Dashboard
         </title>
       </Head>
-      <Box component="main" sx={{flexGrow: 1, py: -1, ml: 15}}>
-        <Container maxWidth="xl">
-          <Grid container spacing={4}>
-            <Grid item md={8} xs={12}>
+      <Box component="main" sx={{py: -1, ml: 15, display: 'flex'}}>
+          <Grid container >
+            <Grid item xs={12}>
                 <Box sx={{ mb: 4, ml: 2}}>
                   <Typography variant="h4" style={{fontWeight: '500'}}>
                     Good Morning
@@ -65,21 +64,18 @@ const Overview = () => {
                 <Revenue />           
                 <StatisticsContainer />
             </Grid>
-
-            <Grid item md={4} xs={12}>
-                <ClientList title="Your Recent Clients" placeholder="Search in all Persona"/>
-            </Grid>
-
             <Grid item md={8} xs={12}>
              <p>Here goes the graphic</p>
-            </Grid>
-
-            <Grid item md={4} xs={12}>
-              <PaymentsList title="Your Buisiness Payments" placeholder="Search a Payment" />   
-            </Grid>
-
+            </Grid>  
           </Grid>
-        </Container>
+          <Box sx={{width: '50%', height: '100%'}}>
+            <Box sx={{mb: '2rem'}}>
+              <ClientList title="Your Recent Clients" placeholder="Search in all Persona"/>
+            </Box>
+            <Box>
+              <PaymentsList title="Your Buisiness Payments" placeholder="Search a Payment"/> 
+            </Box>
+          </Box>
       </Box>
     </>
   );
@@ -93,5 +89,14 @@ Overview.getLayout = (page) => (
 );
 
 export default Overview;
+
+{/* <Grid item md={4} xs={12}>
+                <ClientList title="Your Recent Clients" placeholder="Search in all Persona"/>
+            </Grid> */}
+
+            // <Grid item md={4} xs={12}>
+            //   <PaymentsList title="Your Buisiness Payments" placeholder="Search a Payment" />   
+            // </Grid>
+
 
 

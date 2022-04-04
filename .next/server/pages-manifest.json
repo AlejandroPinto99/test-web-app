@@ -4,6 +4,7 @@
   "/500": "pages/500.html",
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
   "/authentication/authorize": "pages/authentication/authorize.html",
   "/authentication/login": "pages/authentication/login.html",
   "/authentication/password-recovery": "pages/authentication/password-recovery.html",
@@ -13,5 +14,7 @@
   "/checkout": "pages/checkout.html",
   "/docs/[slug]": "pages/docs/[slug].js",
   "/": "pages/index.html",
+=======
+>>>>>>> f0559747eae9a339d2b56dc664a8b994994a7139
   "/_error": "pages/_error.js"
 }

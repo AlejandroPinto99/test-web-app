@@ -34,7 +34,8 @@ export interface ClientProps{
 const Client: React.FC<ClientProps> = ({name, email, revenue = 0}) => { 
 
     return(
-      <Box component="div" sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
+      <Box component="div" 
+      sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
         <Box sx={{display: 'flex', flexDirection: 'row'}}>
             <Box sx={{border: '1px solid rgba(216, 194, 149, 1)', borderRadius:'100%', boxShadow: '10px', ml: '2rem'}}>
                 <Typography component="p" style={{ fontSize: '1.2rem', fontWeight: '600', padding: '15px 17px'}}>CN</Typography>

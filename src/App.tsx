@@ -1,8 +1,8 @@
 import './App.css';
 
 //Components
-import ClientList from './components/ClientList';
-import PaymentsList from './components/PaymentList'
+import {ClientList} from './components/dashboard/client-list/ClientList';
+import {PaymentsList} from './components/dashboard/payments-list/PaymentList'
 
 const App = () => {
   return (

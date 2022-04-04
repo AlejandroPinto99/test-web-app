@@ -19,6 +19,10 @@ import {formatCentsToDollars} from '../../../helpers/formatters'
 //Hook
 import { useGetCustomersQuery }  from '../../../services/customersApi'
 
+//Fonts
+import {createTheme} from '@material-ui/core/styles'
+
+
 
 export interface ClientListProps{
     title: string;
@@ -37,18 +41,18 @@ const Client: React.FC<ClientProps> = ({name, email, revenue = 0}) => {
       <Box component="div" 
       sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
         <Box sx={{display: 'flex', flexDirection: 'row'}}>
-            <Box sx={{border: '1px solid rgba(216, 194, 149, 1)', borderRadius:'100%', boxShadow: '10px', ml: '2rem'}}>
+            <Box sx={{border: '1px solid rgba(216, 194, 149, 1)', borderRadius:'100%', boxShadow: '10px', ml: '1rem'}}>
                 <Typography component="p" style={{ fontSize: '1.2rem', fontWeight: '600', padding: '15px 17px'}}>CN</Typography>
             </Box>
 
             <Box sx={{ml: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'start'}}>
-                <Typography component="h4" style={{fontSize: '1.5rem', fontWeight: '600'}}>{name}</Typography>
-                <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)'}}>{email}</Typography>
+                <Typography component="h4" style={{fontSize: '1.2rem', fontWeight: '600', fontFamily: 'Lato'}}>{name}</Typography>
+                <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)', fontFamily: 'Lato', fontSize: '0.8rem'}}>{email}</Typography>
             </Box>
           </Box>
-          <Box sx={{display: 'flex', flexDirection: 'column', ml: '2rem', mr: '1rem'}}>
-              <Typography component="span" style={{fontWeight: '600', fontSize: '1.5rem', textAlign:'right'}}>$ {formatCentsToDollars(revenue)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
-              <Typography component="span" style={{textAlign: 'right', color: 'rgba(163, 163, 163, 1)'}}>Revenue</Typography>
+          <Box sx={{display: 'flex', flexDirection: 'column',  ml: '2rem', mr: '1rem'}}>
+              <Typography component="span" style={{fontWeight: '600', fontSize: '1rem', textAlign:'right'}}>$ {formatCentsToDollars(revenue)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
+              <Typography component="span" style={{color: 'rgba(163, 163, 163, 1)', textAlign: 'right'}}>Revenue</Typography>
           </Box>
       </Box>
     )
@@ -60,6 +64,15 @@ const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
         isLoading: isLoadingCustomers,
         refetch: refetchCustomers
     } = useGetCustomersQuery(); 
+
+    const theme = createTheme({
+        typography: {
+            fontFamily:[
+                'Lato',
+                'serif',
+            ].join(','),
+        }
+    },);
     
     return(
         <Container maxWidth="sm" >
@@ -68,11 +81,11 @@ const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
                 id="serach_box"
                 placeholder={placeholder}
                 size="medium"
-                sx={{width: '70%', color: 'rgba(196, 196, 196, 1)', paddingBottom: '20px'}}
+                sx={{width: '70%', color: 'rgba(196, 196, 196, 1)', paddingBottom: '20px', fontSize: '1rem'}}
                 InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                    <SearchIcon sx={{fontSize: '40px', color:'rgba(196, 196, 196, 1)'}}/>
+                    <SearchIcon sx={{fontSize: '35px', color:'rgba(196, 196, 196, 1)'}}/>
                     </InputAdornment>),
                 style: {
                     height: '3rem',
@@ -85,12 +98,12 @@ const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
             </Box>
 
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <Typography  variant="h5" component="h2" style={{marginRight: '2rem', fontWeight: 600, fontSize: '1.8rem'}}>{title}</Typography>
-                <Typography variant="body1" component="p" style={{marginLeft: '2rem', marginRight: '0.5rem', color: 'rgba(82, 82, 82, 1)', cursor: 'pointer'}} >  See Full List   </Typography>
+                <Typography  variant="h5" component="h2" style={{marginRight: '2rem', fontWeight: 900, fontSize: '1.5rem', fontFamily: 'Lato'}}>{title}</Typography>
+                <Typography variant="body1" component="p" style={{fontSize: '0.8rem', marginLeft: '2rem', marginRight: '0.5rem', color: 'rgba(82, 82, 82, 1)', cursor: 'pointer'}} >  See Full List   </Typography>
                 <ArrowForwardIcon sx={{color: 'rgba(216, 194, 149, 1)', fontSize: 25, cursor: 'pointer'}} />
             </Box>
 
-           <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '2rem',}}>
+           <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '1rem',}}>
                 <Stack sx={{ width: '85%', height: '300px', 
                 boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
                 borderRadius: '20px', overflow: "hidden", overflowY: 'scroll'}} className="">

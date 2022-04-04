@@ -23,7 +23,7 @@ const StatisticCard: React.FC<StatisticsProps> = ({title, dateInfo, param1, para
         <Box  sx={{display: 'flex', flexDirection: 'column', border: '1px solid rgba(216, 194, 149, 1)', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
         borderRadius: '15px', p: '15px', width: '49%'}}>
             <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-                <Typography  component="h4" style={{marginRight: '2rem', fontWeight: 900, fontSize: '2rem'}}>{title}</Typography>
+                <Typography  component="h4" style={{marginRight: '2rem', fontWeight: 900, fontSize: '1.5rem'}}>{title}</Typography>
                 <Box sx={{display: 'flex', alignItems: 'center'}}>
                     <DateInfoTag message={dateInfo} />
                     <IconButton />

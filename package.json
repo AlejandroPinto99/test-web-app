@@ -57,6 +57,7 @@
     "i18next": "^21.6.10",
     "iconv-lite": "^0.6.3",
     "lodash.debounce": "^4.0.8",
+    "moment": "^2.29.2",
     "next": "^12.0.10",
     "nprogress": "^0.2.0",
     "numeral": "^2.0.6",

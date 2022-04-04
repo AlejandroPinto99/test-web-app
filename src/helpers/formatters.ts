@@ -1,5 +1,5 @@
 /**
- * Format amount as Dollars
+ * at amount as Dollars
  * @param {number} number
  * @example formatDollars(1000); => "$1,000.00"
  * @returns {string} Formatted text as Dollars
@@ -64,7 +64,7 @@ export function formatEachSeparateLetter(text: string) {
   return textToFormat.match(/\b(\w)/g)?.join("") ?? "";
 }
 
-export function formatCentsToDollars(cents: number) {
+export function formatCentsToDollars(cents?: number) {
   return (cents ?? 0) / 100;
 }
 

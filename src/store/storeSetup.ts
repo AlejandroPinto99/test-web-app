@@ -1,8 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
 import { baseStoreApi } from "./storeApi";
 import { configReducer } from "./reducers/config";
-import  localStorage  from "redux-persist/es/storage";
 
 
 const reducers = combineReducers({

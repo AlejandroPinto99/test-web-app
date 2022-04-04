@@ -18,7 +18,7 @@ export interface PaymentsListProps{
 
 export interface PaymentProps{
     name?: string;
-    amount: number;
+    amount?: number;
     created?: number;
 }
 
@@ -75,7 +75,7 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
                     {
                         !isLoadingPayments && (payments?.map((payment, i) => {
                             return(
-                                <Payment key={i} name={payment.customer.name} amount={payment.amount} created={payment.created} />
+                                <Payment key={i} name={payment.customer?.name} amount={payment.amount} created={payment.created} />
                             )
                         }))
                     }

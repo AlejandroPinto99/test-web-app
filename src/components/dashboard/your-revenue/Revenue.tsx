@@ -6,7 +6,6 @@ import {IconButton} from '../../widgets/buttons/IconBotton'
 
 //Material UI
 import { Container, Box, Typography, Divider} from '@mui/material';
-import {createTheme} from '@material-ui/core/styles'
 
 //Fonts
 import 'typeface-lato'

@@ -28,6 +28,7 @@ function getPaymentStatus(type: string, status: string, created: number, refunde
       paymentStatus === PaymentStatusEnum.Open
     );
   };
+  
   function getPaymentStatusColor(status: string, created: number) {
     const pastDue = dateShouldBePastDue(moment.unix(created), "days", status);
     if (pastDue || status === "void" || status === "failed") return colors.red;

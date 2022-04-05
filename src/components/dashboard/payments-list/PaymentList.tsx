@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 //Helpers
 import {formatCentsToDollars} from '../../../helpers/formatters'
+import {getPaymentStatus, getPaymentStatusColor} from '../../../helpers/paymentHelper'
 
 //Hooks
 import {useGetPaymentsQuery} from '../../../services/paymentsApi'
@@ -25,9 +26,13 @@ export interface PaymentProps{
     name?: string;
     amount?: number;
     created?: number;
+    status?: string;
+    type?: string
+    refunded: boolean;
+    disputed: boolean;
 }
 
-const Payment: React.FC<PaymentProps> = ({name, amount, created}) => { 
+const Payment: React.FC<PaymentProps> = ({name, amount, created, type, status, refunded, disputed}) => { 
 
     return(
       <Box component="div" sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
@@ -37,7 +42,7 @@ const Payment: React.FC<PaymentProps> = ({name, amount, created}) => {
           
           <Box sx={{display: 'flex', flexDirection: 'column', ml: '2rem', mr: '1rem'}}>
               <Typography component="span" style={{fontWeight: '600', fontSize: '1.2rem', textAlign:'right', color: 'rgba(82, 82, 82, 1)'}}>${formatCentsToDollars(amount)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
-              <Typography component="span" style={{textAlign: 'right', color: 'rgba(163, 163, 163, 1)'}}>{created}</Typography>
+              <Typography component="span" style={{textAlign: 'right', color: `${getPaymentStatusColor(status, created).A100}`}}>{getPaymentStatus(type, status, created, refunded, disputed)}</Typography>
           </Box>
       </Box>
     )
@@ -73,7 +78,7 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
                 id="serach_box"
                 placeholder={placeholder}
                 size="medium"
-                sx={{width: '100%', color: 'rgba(196, 196, 196, 1)', paddingBottom: '20px', fontSize: '1rem'}}
+                style={{width: '100%', color: 'rgba(196, 196, 196, 1)', paddingBottom: '20px', fontSize: '1rem'}}
                 InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
@@ -94,7 +99,8 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
                     {
                         !isLoadingPayments && (payments?.map((payment, i) => {
                             return(
-                                <Payment key={i} name={payment.customer?.name} amount={payment.amount} created={payment.created} />
+                                <Payment key={i} name={payment.customer?.name} amount={payment.amount} created={payment.created} 
+                                status={payment.status} type={payment.type} refunded={payment.refunded} disputed={payment.disputed} />
                             )
                         }))
                     }

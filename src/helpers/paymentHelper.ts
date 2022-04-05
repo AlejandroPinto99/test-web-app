@@ -19,9 +19,7 @@ function getPaymentStatus(type: string, status: string, created: number, refunde
     if (status === PaymentStatusEnum.Paid) prefix = "Paid";
     if (pastDue) prefix = "Past Due";
     else if (status === PaymentStatusEnum.Open) prefix = "Due";
-    return `${formatCapitalizeFirstLetter(type)}${
-      type ? " · " : ""
-    } ${prefix} ${moment.unix(created).format("MMM Do")}`;
+    return ` ${prefix} ${moment.unix(created).format("MMM Do")}`;
   }
   
   const dateShouldBePastDue = (date: moment.Moment, precision: unitOfTime.StartOf, paymentStatus: string) => {

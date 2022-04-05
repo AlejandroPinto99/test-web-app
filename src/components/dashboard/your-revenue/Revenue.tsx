@@ -3,20 +3,87 @@ import React from 'react'
 //Components
 import { DateInfoTag } from '../DateInfoTag'
 import {IconButton} from '../../widgets/buttons/IconBotton'
+import {Chart} from '../../chart'
+import IncreaseIndicator from '../IncreaseIndicator'
 
 //Material UI
-import { Container, Box, Typography, Divider} from '@mui/material';
+import {Box, Typography, Divider} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import CircleIcon from '@mui/icons-material/Circle';
 
 //Fonts
 import 'typeface-lato'
 
 const Revenue = () => {
+    const theme = useTheme();
+
+    const chart1Options = {
+        chart: {
+          background: 'transparent',
+          stacked: false,
+          toolbar: {
+            show: false
+          }
+        },
+        colors: ['rgba(65, 203, 112, 1)'],
+        fill: {
+          opacity: 1
+        },
+        labels: [],
+        plotOptions: {
+          radialBar: {
+            dataLabels: {
+              show: false
+            },
+            hollow: {
+              size: '65%'
+            },
+            track: {
+              background: ['rgba(229, 229, 229, 1)']
+            }
+          }
+        },
+        theme: {
+          mode: theme.palette.mode
+        }
+      };
+
+      const chart2Options = {
+        chart: {
+          background: 'transparent',
+          stacked: false,
+          toolbar: {
+            show: false
+          }
+        },
+        colors: ['rgba(216, 194, 149, 1)'],
+        fill: {
+          opacity: 1
+        },
+        labels: [],
+        plotOptions: {
+          radialBar: {
+            dataLabels: {
+              show: false
+            },
+            hollow: {
+              size: '60%'
+            },
+            track: {
+              background: ['rgba(229, 229, 229, 1)']
+            }
+          }
+        },
+        theme: {
+          mode: theme.palette.mode
+        }
+      };
 
     //Creating a theme for font
 
     return(
         <Box sx={{display: 'flex', mb: '2rem', mx:'1rem', border: '1px solid rgba(216, 194, 149, 1)', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-        borderRadius: '15px', py: '10px' }}
+        borderRadius: '15px', pt: '10px' }}
         >
             <Box sx={{width: '65%', px: '30px'}}>
                 <Box sx={{display: 'flex', justifyContent: 'space-between', mt: '10px'}}>
@@ -32,11 +99,42 @@ const Revenue = () => {
                         <label style={{color: 'rgba(163, 163, 163, 1)', fontWeight: '700', fontFamily: 'Lato'}} >Cost:</label>
                         <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '800', marginTop:'0px', fontFamily: 'Lato'}}>-$ 5,040.00</Typography>
                     </Box>
+                    <Box sx={{ml: '2em'}}>
+                        <Box sx={{position: 'relative'}}>
+                            <Chart 
+                                height={180}
+                                options={chart1Options}
+                                series={[40]}
+                                type="radialBar"
+                                width={160} />
 
-                    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                            <Box sx={{position: 'absolute', top: '10%' }} >
+                                <Chart 
+                                    height={150}
+                                    options={chart2Options}
+                                    series={[10]}
+                                    type="radialBar"
+                                    width={160} />
+                            </Box>
 
-                        <label>Last 7 Days Revenue</label>
-                        <label>Average Revenue</label>
+                            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between' ,
+                             position: 'absolute', top:'45%', right: '32%'}}>
+                                <IncreaseIndicator increase={true} value={25} />
+                            </Box>
+                        </Box>
+                        
+                        
+                    </Box>
+                                        
+                    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', ml: '1em' }}>
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                            <CircleIcon style={{fontSize: '0.7rem', color:'rgba(65, 203, 112, 1)'}} />
+                            <Typography component="p" style={{fontFamily: 'Lato', color: 'rgba(82, 82, 82, 1)', fontWeight: '700', marginLeft: '0.5rem'}}>Last 7 Days Revenue</Typography>
+                        </Box>
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                            <CircleIcon style={{fontSize: '0.7rem', color: 'rgba(216, 194, 149, 1)'}} />
+                            <Typography component="p" style={{fontFamily: 'Lato', color: 'rgba(82, 82, 82, 1)', fontWeight: '700',  marginLeft: '0.5rem'}}> Average Revenue</Typography>
+                        </Box>
                     </Box>  
                 </Box>
             </Box>

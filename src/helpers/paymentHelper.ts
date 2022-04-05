@@ -1,6 +1,7 @@
 
 //Enums
 import {PaymentStatusEnum} from '../enums/payment-enum'
+
 //Helpers
 import {formatSnakeCaseToWords, formatCapitalizeFirstLetter} from './formatters'
 import { DateHelper } from './dateHelper'

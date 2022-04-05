@@ -11,10 +11,35 @@ import {Box, Typography, Divider} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CircleIcon from '@mui/icons-material/Circle';
 
+//Services
+import { useGetServicesQuery } from '../../../services/storeServiceApi'
+import { useGetInvoicesQuery } from '../../../services/invoicesApi'
+
+//Helpers
+import {calculateTotal} from '../../../helpers/invoiceHelper'
+import {centToDollar} from '../../../helpers/formatters'
+ 
 //Fonts
 import 'typeface-lato'
 
 const Revenue = () => {
+
+    const {
+      data: services,
+      isLoading: isLoadingServices,
+      refetch: refetchServices
+    } = useGetServicesQuery()
+
+    const {
+      data: invoices,
+      isLoading: isLoadingInvoices,
+      refetch: refetchInvoices
+    } = useGetInvoicesQuery()
+
+
+
+    console.log("services",  services)
+
     const theme = useTheme();
 
     const chart1Options = {
@@ -149,7 +174,7 @@ const Revenue = () => {
                     <Box sx={{display: 'flex', justifyContent: 'space-between', mr: '2rem', width: '70%'}}>
                         <Box>
                             <label style={{color: 'rgba(163, 163, 163, 1)', fontSize: '0.8rem'}}>Invoices</label>
-                            <Typography style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '700', fontFamily: 'Lato'}}>$1,000.00</Typography>
+                            <Typography style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '700', fontFamily: 'Lato'}}>$ {centToDollar(calculateTotal(invoices)!)}</Typography>
                         </Box>
                         <Divider orientation="vertical" variant="middle" flexItem />
                         <Box>

@@ -8,6 +8,9 @@ import { Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
+//components
+import IncreaseIndicator from '../IncreaseIndicator'
+
 
 
 export interface StatisticValueProps {
@@ -25,8 +28,7 @@ const StatisticValue: React.FC<StatisticValueProps> = ({title, value, increase})
             </Box>
             <Typography component="p" style={{color: 'rgba(0, 0, 0, 1)', fontSize:'2rem', fontWeight: '800'}}>{value}</Typography>
             <Box sx={{display:'flex', alignItems: 'center'}}>
-                <ArrowUpwardIcon />
-                <Typography component="h4" style={{fontSize: '1rem'}}>{increase}%</Typography>
+                <IncreaseIndicator increase={true} value={25} />
             </Box>
         </Box>
     );

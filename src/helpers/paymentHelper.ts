@@ -1,8 +1,9 @@
-import { DateHelper } from './dateHelper'
 
+//Enums
 import {PaymentStatusEnum} from '../enums/payment-enum'
-
+//Helpers
 import {formatSnakeCaseToWords, formatCapitalizeFirstLetter} from './formatters'
+import { DateHelper } from './dateHelper'
 import moment, { unitOfTime } from 'moment';
 import { colors } from '@material-ui/core';
 

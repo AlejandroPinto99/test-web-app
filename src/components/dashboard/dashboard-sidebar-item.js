@@ -63,7 +63,7 @@ export const DashboardSidebarItem = (props) => {
               backgroundColor: 'rgba(255,255,255, 0.08)'
             },
             '& .MuiButton-startIcon': {
-              color: active ? 'secondary.main' : 'neutral.400'
+              color: selected === title? '#D8C295' : 'rgba(229, 229, 229, 1)'
             },
             '& .MuiButton-endIcon': {
               color: 'neutral.400'
@@ -95,6 +95,7 @@ export const DashboardSidebarItem = (props) => {
         py: 0,
         px: 2
       }}
+      style={{borderLeft: `${selected === title ? '10px solid #D8C295' : '' }`}}
       onClick={() => setSelected(title)}
     >
       <NextLink
@@ -119,7 +120,7 @@ export const DashboardSidebarItem = (props) => {
             width: '100%',
             ...(active && {
               backgroundColor: 'inherit',
-              color: 'rgba(229, 229, 229, 1)',
+              color: selected === title? '#D8C295' : 'rgba(229, 229, 229, 1)',
               fontSize: '1.3rem',
               fontWeight: '500',
             }),

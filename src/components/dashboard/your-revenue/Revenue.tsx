@@ -39,7 +39,7 @@ const Revenue = () => {
               size: '65%'
             },
             track: {
-              background: ['rgba(229, 229, 229, 1)']
+              background: 'rgba(229, 229, 229, 1)'
             }
           }
         },
@@ -70,7 +70,7 @@ const Revenue = () => {
               size: '60%'
             },
             track: {
-              background: ['rgba(229, 229, 229, 1)']
+              background: 'rgba(229, 229, 229, 1)'
             }
           }
         },

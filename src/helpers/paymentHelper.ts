@@ -8,7 +8,8 @@ import { DateHelper } from './dateHelper'
 import moment, { unitOfTime } from 'moment';
 import { colors } from '@material-ui/core';
 
-function getPaymentStatus(type: string, status: string, created: number, refunded: boolean, disputed: boolean) {
+function getPaymentStatus(type: string | undefined, status: string , created: number, 
+  refunded: boolean | undefined, disputed: boolean | undefined) {
     const pastDue = dateShouldBePastDue(moment.unix(created), "days", status);
     let prefix = formatSnakeCaseToWords(status);
     if (status === "void") return "Invoice Canceled";
@@ -31,7 +32,7 @@ function getPaymentStatus(type: string, status: string, created: number, refunde
     );
   };
   
-  function getPaymentStatusColor(status: string, created: number) {
+  function getPaymentStatusColor(status: string , created: number ) {
     const pastDue = dateShouldBePastDue(moment.unix(created), "days", status);
     if (pastDue || status === "void" || status === "failed") return colors.red;
     else return colors.grey;

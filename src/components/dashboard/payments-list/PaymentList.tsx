@@ -23,26 +23,26 @@ export interface PaymentsListProps{
 }
 
 export interface PaymentProps{
-    name?: string;
-    amount?: number;
-    created?: number;
-    status?: string;
-    type?: string
-    refunded: boolean;
-    disputed: boolean;
+    name: string | undefined;
+    amount: number | undefined;
+    created: number ;
+    status: string ;
+    type: string | undefined;
+    refunded?: boolean ;
+    disputed?: boolean;
 }
 
-const Payment: React.FC<PaymentProps> = ({name, amount, created, type, status, refunded, disputed}) => { 
+const Payment: React.FC<PaymentProps> = (props?) => { 
 
     return(
       <Box component="div" sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
             <Box sx={{ml: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'start'}}>
-                <Typography component="h4" style={{fontSize: '1.2rem', fontWeight: '400', color: 'rgba(82, 82, 82, 1)', fontFamily: 'Lato'}}>{name}</Typography>
+                <Typography component="h4" style={{fontSize: '1.2rem', fontWeight: '400', color: 'rgba(82, 82, 82, 1)', fontFamily: 'Lato'}}>{props.name}</Typography>
             </Box>
           
           <Box sx={{display: 'flex', flexDirection: 'column', ml: '2rem', mr: '1rem'}}>
-              <Typography component="span" style={{fontWeight: '600', fontSize: '1.2rem', textAlign:'right', color: 'rgba(82, 82, 82, 1)'}}>${formatCentsToDollars(amount)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
-              <Typography component="span" style={{textAlign: 'right', color: `${getPaymentStatusColor(status, created).A100}`}}>{getPaymentStatus(type, status, created, refunded, disputed)}</Typography>
+              <Typography component="span" style={{fontWeight: '600', fontSize: '1.2rem', textAlign:'right', color: 'rgba(82, 82, 82, 1)'}}>${formatCentsToDollars(props.amount)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
+              <Typography component="span" style={{textAlign: 'right', color: `${getPaymentStatusColor(props.status, props.created).A100}`}}>{getPaymentStatus(props.type, props.status, props.created, props.refunded, props.disputed)}</Typography>
           </Box>
       </Box>
     )
@@ -97,10 +97,10 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
                 <Stack sx={{ width: '85%', height: '300px', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)', 
                 borderRadius: '20px', overflow: "hidden", overflowY: 'scroll'}}>
                     {
-                        !isLoadingPayments && (payments?.map((payment, i) => {
+                        payments && (payments.map((payment, i: number) => {
                             return(
-                                <Payment key={i} name={payment.customer?.name} amount={payment.amount} created={payment.created} 
-                                status={payment.status} type={payment.type} refunded={payment.refunded} disputed={payment.disputed} />
+                                <Payment key={i} name={payment.customer?.name} amount={payment.amount} created={payment.created!} 
+                                status={payment.status!} type={payment.type} refunded={payment.refunded} disputed={payment.disputed} />
                             )
                         }))
                     }

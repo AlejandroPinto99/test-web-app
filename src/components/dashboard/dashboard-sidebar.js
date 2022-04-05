@@ -82,6 +82,9 @@ export const DashboardSidebar = (props) => {
   const sections = useMemo(() => getSections(t), [t]);
   const organizationsRef = useRef(null);
   const [openOrganizationsPopover, setOpenOrganizationsPopover] = useState(false);
+  
+  const [selected, setSelected] = useState("Bussiness");
+
 
   const handlePathChange = () => {
     if (!router.isReady) {
@@ -143,7 +146,10 @@ export const DashboardSidebar = (props) => {
                     mt: 2
                   }
                 }}
-                {...section} />
+                {...section} 
+                selected={selected}
+                setSelected={setSelected}
+                />
             ))}
           </Box>
         </Box>

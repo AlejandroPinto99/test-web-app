@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { List, ListSubheader } from '@mui/material';
 import { DashboardSidebarItem } from './dashboard-sidebar-item';
 
-const renderNavItems = ({ depth = 0, items, path }) => (
+const renderNavItems = ({ depth = 0, items, path, selected, setSelected}) => (
   <List disablePadding>
-    {items.reduce((acc, item) => reduceChildRoutes({ acc, depth, item, path }), [])}
+    {items.reduce((acc, item) => reduceChildRoutes({ acc, depth, item, path, selected, setSelected }), [])}
   </List>
 );
 
-const reduceChildRoutes = ({ acc, depth, item, path }) => {
+const reduceChildRoutes = ({ acc, depth, item, path, selected, setSelected }) => {
   const key = `${item.title}-${depth}`;
   const partialMatch = item.path ? path.includes(item.path) : false;
   const exactMatch = path.split('?')[0] === item.path; // We don't compare query params
@@ -22,6 +22,8 @@ const reduceChildRoutes = ({ acc, depth, item, path }) => {
         icon={item.icon}
         info={item.info}
         key={key}
+        selected={selected}
+        setSelected={setSelected}
         open={partialMatch}
         path={item.path}
         title={item.title}
@@ -41,6 +43,8 @@ const reduceChildRoutes = ({ acc, depth, item, path }) => {
         depth={depth}
         icon={item.icon}
         info={item.info}
+        selected={selected}
+        setSelected={setSelected}
         key={key}
         path={item.path}
         title={item.title}
@@ -52,7 +56,7 @@ const reduceChildRoutes = ({ acc, depth, item, path }) => {
 };
 
 export const DashboardSidebarSection = (props) => {
-  const { items, path, title, ...other } = props;
+  const { items, path, title, selected, setSelected, ...other} = props;
 
   return (
     <List
@@ -75,7 +79,9 @@ export const DashboardSidebarSection = (props) => {
       {...other}>
       {renderNavItems({
         items,
-        path
+        path,
+        selected,
+        setSelected
       })}
     </List>
   );

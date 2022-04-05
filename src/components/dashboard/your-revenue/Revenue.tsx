@@ -36,10 +36,6 @@ const Revenue = () => {
       refetch: refetchInvoices
     } = useGetInvoicesQuery()
 
-
-
-    console.log("services",  services)
-
     const theme = useTheme();
 
     const chart1Options = {

@@ -16,6 +16,8 @@ export const DashboardSidebarItem = (props) => {
     open: openProp,
     path,
     title,
+    selected,
+    setSelected,
     ...other
   } = props;
   const [open, setOpen] = useState(!!openProp);
@@ -39,8 +41,8 @@ export const DashboardSidebarItem = (props) => {
           display: 'block',
           mb: 0.5,
           py: 0,
-          px: 2
         }}
+        style={{cursor: 'pointer'}}
         {...other}>
         <Button
           endIcon={!open
@@ -93,6 +95,7 @@ export const DashboardSidebarItem = (props) => {
         py: 0,
         px: 2
       }}
+      onClick={() => setSelected(title)}
     >
       <NextLink
         href={path}
@@ -118,17 +121,17 @@ export const DashboardSidebarItem = (props) => {
               backgroundColor: 'inherit',
               color: 'rgba(229, 229, 229, 1)',
               fontSize: '1.3rem',
-              fontWeight: '500'
+              fontWeight: '500',
             }),
             '& .MuiButton-startIcon': {
-              color: active ? 'rgba(229, 229, 229, 1)' : 'neutral.400'
+              color: selected === title? '#D8C295' : 'rgba(229, 229, 229, 1)'
             },
             '&:hover': {
               backgroundColor: 'rgba(255,255,255, 0.08)'
             }
           }}
 
-          style={{fontSize: '1.3rem'}}
+          style={{fontSize: '1rem', color: `${selected === title? '#D8C295' : 'rgba(229, 229, 229, 1)'}`}}
         >
           <Box sx={{ flexGrow: 1 }}>
             {title}

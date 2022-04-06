@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { List, ListSubheader } from '@mui/material';
 import { DashboardSidebarItem } from './dashboard-sidebar-item';
 
+
 const renderNavItems = ({ depth = 0, items, path, selected, setSelected}) => (
   <List disablePadding>
     {items.reduce((acc, item) => reduceChildRoutes({ acc, depth, item, path, selected, setSelected }), [])}
@@ -65,7 +66,7 @@ export const DashboardSidebarSection = (props) => {
           disableGutters
           disableSticky
           sx={{
-            color: 'neutral.500',
+            color: '#A3A3A3',
             fontSize: '1rem',
             fontWeight: 500,
             lineHeight: 2.5,
@@ -83,6 +84,8 @@ export const DashboardSidebarSection = (props) => {
         selected,
         setSelected
       })}
+
+
     </List>
   );
 };

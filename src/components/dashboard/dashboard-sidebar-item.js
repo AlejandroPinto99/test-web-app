@@ -121,7 +121,7 @@ export const DashboardSidebarItem = (props) => {
             ...(active && {
               backgroundColor: 'inherit',
               color: selected === title? '#D8C295' : 'rgba(229, 229, 229, 1)',
-              fontSize: '1.3rem',
+              fontSize: '1rem',
               fontWeight: '500',
             }),
             '& .MuiButton-startIcon': {

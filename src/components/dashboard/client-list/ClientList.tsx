@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 //Material UI components
 import Container from '@material-ui/core/Container'
@@ -17,7 +17,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {formatCentsToDollars} from '../../../helpers/formatters'
 
 //Hook
-import { useGetCustomersQuery }  from '../../../services/customersApi'
+import { useGetCustomersQuery, useGetCustomerQuery }  from '../../../services/customersApi'
 
 //Fonts
 import {createTheme} from '@material-ui/core/styles'
@@ -59,11 +59,16 @@ const Client: React.FC<ClientProps> = ({name, email, revenue = 0}) => {
 }
 
 const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
+    const [search, setSearch] = useState<string>("")
+
     const {
         data: customers,
         isLoading: isLoadingCustomers,
         refetch: refetchCustomers
     } = useGetCustomersQuery(); 
+
+    console.log("search", search);
+
 
     const theme = createTheme({
         typography: {
@@ -81,6 +86,7 @@ const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
                 id="serach_box"
                 placeholder={placeholder}
                 size="medium"
+                onChange={(e) => setSearch(e.target.value)}
                 sx={{width: '70%', color: 'rgba(196, 196, 196, 1)', paddingBottom: '20px', fontSize: '1rem'}}
                 InputProps={{
                 startAdornment: (

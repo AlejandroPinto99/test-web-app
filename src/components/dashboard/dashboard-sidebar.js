@@ -3,11 +3,12 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Box, Divider, Drawer, useMediaQuery } from '@mui/material';
+import { Box, Divider, Drawer, useMediaQuery, Typography, Paper, Button } from '@mui/material';
 import { Logo } from '../logo';
 import { Scrollbar } from '../scrollbar';
 import { DashboardSidebarSection } from './dashboard-sidebar-section';
 import { OrganizationPopover } from './organization-popover';
+import { makeStyles } from '@mui/styles';
 
 //Icons
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -85,6 +86,16 @@ export const DashboardSidebar = (props) => {
   
   const [selected, setSelected] = useState("Bussiness");
 
+  const useStyles = makeStyles({
+    button: {
+      "&.active": {
+        transform: 'scale(0.95)',
+      },
+    },
+  });
+
+  const classes = useStyles();
+
 
   const handlePathChange = () => {
     if (!router.isReady) {
@@ -99,10 +110,6 @@ export const DashboardSidebar = (props) => {
   useEffect(handlePathChange,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [router.isReady, router.asPath]);
-
-  const handleOpenOrganizationsPopover = () => {
-    setOpenOrganizationsPopover(true);
-  };
 
   const handleCloseOrganizationsPopover = () => {
     setOpenOrganizationsPopover(false);
@@ -121,7 +128,7 @@ export const DashboardSidebar = (props) => {
                 <a>
                   <Logo
                     sx={{
-                      height: 42,
+                      height: 40,
                       width: 42
                     }}
                   />
@@ -140,18 +147,31 @@ export const DashboardSidebar = (props) => {
               <DashboardSidebarSection
                 key={section.title}
                 path={router.asPath}
-                sx={{
-                  mt: 2,
-                  '& + &': {
-                    mt: 2
-                  }
-                }}
                 {...section} 
                 selected={selected}
                 setSelected={setSelected}
                 />
             ))}
           </Box>
+          <Box sx={{mx: 4, mb: 4}}>
+            <Typography component="p" style={{color: '#A3A3A3', fontSize: '1rem', marginBottom: '10px', fontFamily: 'Lato'}}>YOUR PROFILE</Typography>
+              <Box sx={{display: 'flex'}}>
+                  <Paper sx={{ mr: 4}} >
+                      <img src="https://santafaz.org.ar/wp-content/uploads/2020/07/bg_foto_perfil_generica-1.jpg" alt="profile_picture"
+                        style={{width: '80px', height: '80px' }} />
+                  </Paper>
+                  <Box sx={{display: 'flex', justifyContent:'center', alignItem: 'center', flexDirection: 'column'}}>
+                      <Typography component="p" style={{fontFamily: 'Lato', fontSize: '1.2rem' }}> Alexander GreenWood</Typography>
+                      <Typography component="p" style={{fontFamily: 'Lato', fontSize: '1em', color: '#A3A3A3'}}> alexgrenwood@gmail.com</Typography>
+                  </Box>
+              </Box>
+
+              <Button style={{width: '100%', border: 'solid 1px #A3A3A3', marginTop: '1rem', color: '#C4C4C4'}} 
+              className={classes.root}>
+                  LOGOUT
+              </Button>
+          </Box>
+              
         </Box>
       </Scrollbar>
       <OrganizationPopover

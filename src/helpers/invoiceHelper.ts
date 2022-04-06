@@ -10,4 +10,4 @@ const calculateTotal = (invoices: any) => {
     return total;
 }
 
-export {calculateTotal }
+export {calculateTotal}

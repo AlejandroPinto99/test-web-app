@@ -78,7 +78,7 @@ const PaymentsList: React.FC <PaymentsListProps> = ({title, placeholder}) => {
                 id="serach_box"
                 placeholder={placeholder}
                 size="medium"
-                style={{width: '100%', color: 'rgba(196, 196, 196, 1)', paddingBottom: '20px', fontSize: '1rem'}}
+                style={{width: '80%', color: 'rgba(196, 196, 196, 1)', paddingBottom: '20px', fontSize: '1rem'}}
                 InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">

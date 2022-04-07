@@ -67,9 +67,6 @@ const ClientList: React.FC<ClientListProps> = ({title, placeholder}) => {
         refetch: refetchCustomers
     } = useGetCustomersQuery(); 
 
-    console.log("search", search);
-
-
     const theme = createTheme({
         typography: {
             fontFamily:[

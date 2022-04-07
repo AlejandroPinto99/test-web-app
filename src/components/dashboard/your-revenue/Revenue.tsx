@@ -118,7 +118,7 @@ const Revenue = () => {
                     <Box>
                         <Typography component="h5" style={{color: 'rgba(0, 0, 0, 1)', fontSize: '3rem', fontWeight: '900', fontFamily: 'Lato'}}><span style={{fontSize: '2rem'}}>$</span>15,354.<span style={{fontSize: '2rem'}}>19</span></Typography>
                         <label style={{color: 'rgba(163, 163, 163, 1)', fontWeight: '700', fontFamily: 'Lato'}} >Cost:</label>
-                        <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '800', marginTop:'0px', fontFamily: 'Lato'}}>-$ 5,040.00</Typography>
+                        <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '800', marginTop:'0px', fontFamily: 'Lato'}}> $ 5,040.00</Typography>
                     </Box>
                     <Box sx={{ml: '2em'}}>
                         <Box sx={{position: 'relative'}}>

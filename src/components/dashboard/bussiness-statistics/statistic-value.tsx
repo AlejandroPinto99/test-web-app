@@ -26,13 +26,15 @@ const StatisticValue: React.FC<StatisticValueProps> = ({title, value, increase})
 
     return(
         <Box sx={{width: '45%', px:'0.6rem'}}>
+            
             <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                 <Typography component="h4" style={{color: 'rgba(163, 163, 163, 1)', fontSize:'0.9rem'}}>{title}</Typography>
                 <Box style={{cursor: 'pointer'}}  onClick={() => setOpen(!open)}>
                     <KeyboardArrowDownIcon sx={{color: 'rgba(163, 163, 163, 1)', transform: `${!open ? 'rotate(180deg)': ''}`}} />
                 </Box>
             </Box>
-            <Box sx={{display:`${!open ? 'none' : 'flex'}`}}>
+
+            <Box sx={{display:`${!open ? 'none' : 'flex'}`, flexDirection: 'column'}}>
                 <Typography component="p" style={{color: 'rgba(0, 0, 0, 1)', fontSize:'2rem', fontWeight: '800'}}>{value}</Typography>
                 <Box sx={{display:'flex', alignItems: 'center'}}>
                     <IncreaseIndicator increase={true} value={25} />

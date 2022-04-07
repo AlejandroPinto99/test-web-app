@@ -18,8 +18,8 @@ import {ClientList} from './client-list/ClientList'
 import {PaymentsList} from './payments-list/PaymentList'
 import {Revenue} from './your-revenue/Revenue'
 import {StatisticsContainer} from './bussiness-statistics/statistics-container'
-
-
+import Chart from './chart/Chart'
+import ChartConatainer from './chart/ChartContainer'
 
 import { gtm } from '../../lib/gtm';
 
@@ -64,8 +64,9 @@ const Overview = () => {
                 <Revenue />           
                 <StatisticsContainer />
             </Grid>
-            <Grid item md={8} xs={12}>
-             <p>Here goes the graphic</p>
+            <Grid item md={12} xs={12}>
+                <ChartConatainer
+                title="Revenue" message="This is the amount of money you earned in the last 7 days" /> 
             </Grid>  
           </Grid>
           <Box sx={{width: '50%', height: '100%'}}>
@@ -89,14 +90,3 @@ Overview.getLayout = (page) => (
 );
 
 export default Overview;
-
-{/* <Grid item md={4} xs={12}>
-                <ClientList title="Your Recent Clients" placeholder="Search in all Persona"/>
-            </Grid> */}
-
-            // <Grid item md={4} xs={12}>
-            //   <PaymentsList title="Your Buisiness Payments" placeholder="Search a Payment" />   
-            // </Grid>
-
-
-

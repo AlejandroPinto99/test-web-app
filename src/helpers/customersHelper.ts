@@ -1,9 +1,12 @@
 const getActiveClients = (clients: any) => {
+    let activeClients = 0;
+
     if(clients){
-        const activeClients : any = clients.filter((client: { status: string; }) => client.status === "active");
+        const filteredArray = clients.filter((client: { status: string; }) => client.status === "active");
+        activeClients = filteredArray.length;
     }
 
-    return activeClients.length
+    return activeClients;
 }
 
 export {getActiveClients}

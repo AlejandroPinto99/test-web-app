@@ -1,10 +1,6 @@
 import { useEffect } from 'react';
 import { gtm } from '../lib/gtm';
-
-import Dashboard from '../components/dashboard/dashboard'
 import { DashboardLayout }  from '../components/dashboard/dashboard-layout'
-
-
 const Home = () => {
   useEffect(() => {
     gtm.push({ event: 'page_view' });
@@ -12,15 +8,15 @@ const Home = () => {
 
   return (
     <>
-      <Dashboard />  
+      <h2>Root view</h2>
     </>
   );
 };
 
 Home.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
+    <DashboardLayout>
+      {page}
+    </DashboardLayout>
 )
 
 export default Home;

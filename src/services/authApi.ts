@@ -66,7 +66,7 @@ export const authApi = baseStoreApi.injectEndpoints({
       },
     }),
     forgotPassword: builder.mutation<void, ForgotPasswordRestData>({
-      query: (data) => ({ url: "/user/forgotpassword", method: "POST", data }),
+      query: (data) => ({ url: "/auth/forgotpassword", method: "POST", data }),
       transformResponse: (response) => response.result,
     }),
     saveBiometricPublicKey: builder.mutation<any, BiometricsRestData>({

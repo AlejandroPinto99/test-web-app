@@ -10,7 +10,7 @@ const axiosBaseQuery = () => async (requestOpts: AxiosRequestConfig) => {
     const result = await authServer({
       baseURL: API_URL,
       //This is just for testing in development
-      headers: {Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJXZWxsIiwic3ViIjoiZXJhbkBjYXJ0eXMuaW8iLCJpYXQiOjE2NDg0OTE4NTQxNzAsImV4cCI6MTY0OTM1NTg1NDE3MH0.GBOtnPKzb7LXpFCfAqyVZRq5j6mDJ46ODDblCJyFKqQ'}, 
+      headers: {Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJXZWxsIiwic3ViIjoiZXJhbkBjYXJ0eXMuaW8iLCJpYXQiOjE2NTE1OTYwMjQ3ODEsImV4cCI6MTY1MjQ2MDAyNDc4MX0.aF_4AqO5d6hpnVc3V8V5wv1r9RokpHgn64rFefPw-gQ'}, 
       ...requestOpts,
     });
 

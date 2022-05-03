@@ -6,7 +6,7 @@ import { baseStoreApi } from "../store/storeApi";
 export const transactionsApi = baseStoreApi.injectEndpoints({
   endpoints: (builder) => ({
     getTransactions: builder.query<TransactionResultData[], void>({
-      query: () => ({ url: "/transaction" }),
+      query: () => ({ url: "/finance/transaction" }),
       providesTags: (result, error, arg) => {
         return mapProvidedTag<TransactionResultData>(
           result ?? [],

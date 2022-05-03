@@ -4,45 +4,47 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Box, Divider, Drawer, useMediaQuery, Typography, Paper, Button } from '@mui/material';
-import { Logo } from '../logo';
-import { Scrollbar } from '../scrollbar';
+import { Logo } from '../common/logo';
+import { Scrollbar } from '../common/scrollbar';
 import { DashboardSidebarSection } from './dashboard-sidebar-section';
 import { OrganizationPopover } from './organization-popover';
 import { makeStyles } from '@mui/styles';
 
+import Profile from './dashboard-profilel';
+
 //Icons
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PaidIcon from '@mui/icons-material/Paid';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import BookIcon from '@mui/icons-material/Book';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SpeedIcon from '@mui/icons-material/Speed';
 import PersonalIDIcon from '../../icons/PersonalIDcon';
 import Store from '../../icons/Store';
-import ManageIcon from '../../icons/ManageIcon';
-import CreateInvoiceIcon from '../../icons/CreateInvoiceIcon';
-import MyClientIcon from '../../icons/MyClientsIcon';
 
 const getSections = (t) => [
   {
     title: t('YOUR BANK ACCOUNT'),
     items: [
       {
-        title: t('Financial'),
-        path: '/',
-        icon: <AccountBalanceIcon  style={{fontSize: '2rem'}} />
+        title: t('Finance'),
+        path: '/finance',
+        icon: <AccountBalanceIcon  style={{fontSize: '1.5rem'}} />
       },
       {
         title: t('Bussines'),
         path: '/',
-        icon: <PaidIcon style={{fontSize: '2rem'}} />
+        icon: <PaidIcon style={{fontSize: '1.5rem'}} />
       },
       {
         title: t('Tax Vault'),
         path: '/',
-        icon: <SpeedIcon style={{fontSize: '2rem'}}  />
+        icon: <SpeedIcon style={{fontSize: '1.5rem'}}  />
       },
       {
         title: t('Personal Card'),
         path: '/',
-        icon: <PersonalIDIcon style={{fontSize: '2rem'}} />
+        icon: <PersonalIDIcon style={{fontSize: '1.5rem'}} />
       }
     ]
   },
@@ -50,24 +52,29 @@ const getSections = (t) => [
     title: t('QUICK ACTIONS'),
     items: [
       {
-        title: t('My Store'),
+        title: t('Online Booking'),
         path: '/',
-        icon: <Store style={{fontSize: '2rem'}} />
+        icon: <Store style={{fontSize: '1.5rem'}} />
       },
       {
-        title: t('Manage Services'),
+        title: t('Card and Accounts'),
         path: '/',
-        icon: <ManageIcon style={{fontSize: '2rem'}} />
+        icon: <PersonalIDIcon style={{fontSize: '1.5rem'}} />
       },
       {
-        title: t('Create Invoice'),
+        title: t('Send Money'),
         path: '/',
-        icon: <CreateInvoiceIcon style={{fontSize: '2rem'}} />
+        icon: <ArrowForwardIcon style={{fontSize: '1.5rem'}} />
       },
       {
-        title: t('My Clients List'),
+        title: t('Invte a Friend'),
         path: '/',
-        icon: <MyClientIcon style={{fontSize: '2rem'}} />
+        icon: <PersonAddIcon style={{fontSize: '1.5rem'}} />
+      },
+      {
+        title: t('Tutorial'),
+        path: '/',
+        icon: <BookIcon style={{fontSize: '1.5rem'}} />
       }
     ]
   },
@@ -153,24 +160,8 @@ export const DashboardSidebar = (props) => {
                 />
             ))}
           </Box>
-          <Box sx={{mx: 4, mb: 4}}>
-            <Typography component="p" style={{color: '#A3A3A3', fontSize: '1rem', marginBottom: '10px', fontFamily: 'Lato'}}>YOUR PROFILE</Typography>
-              <Box sx={{display: 'flex'}}>
-                  <Paper sx={{ mr: 4}} >
-                      <img src="https://santafaz.org.ar/wp-content/uploads/2020/07/bg_foto_perfil_generica-1.jpg" alt="profile_picture"
-                        style={{width: '80px', height: '80px' }} />
-                  </Paper>
-                  <Box sx={{display: 'flex', justifyContent:'center', alignItem: 'center', flexDirection: 'column'}}>
-                      <Typography component="p" style={{fontFamily: 'Lato', fontSize: '1.2rem' }}> Alexander GreenWood</Typography>
-                      <Typography component="p" style={{fontFamily: 'Lato', fontSize: '1em', color: '#A3A3A3'}}> alexgrenwood@gmail.com</Typography>
-                  </Box>
-              </Box>
 
-              <Button style={{width: '100%', border: 'solid 1px #A3A3A3', marginTop: '1rem', color: '#C4C4C4'}} 
-              className={classes.root}>
-                  LOGOUT
-              </Button>
-          </Box>
+         <Profile classes={classes} />
               
         </Box>
       </Scrollbar>

@@ -9,6 +9,9 @@ export const AuthGuard = (props) => {
   const router = useRouter();
   const [checked, setChecked] = useState(false);
 
+  console.log(props)
+  
+
   useEffect(() => {
       if (!router.isReady) {
         return;
@@ -25,6 +28,8 @@ export const AuthGuard = (props) => {
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [router.isReady]);
+
+    console.log("Check", checked)
 
   if (!checked) {
     return null;

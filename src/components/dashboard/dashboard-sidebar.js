@@ -33,7 +33,7 @@ const getSections = (t) => [
       },
       {
         title: t('Bussines'),
-        path: '/',
+        path: '/bussiness',
         icon: <PaidIcon style={{fontSize: '1.5rem'}} />
       },
       {

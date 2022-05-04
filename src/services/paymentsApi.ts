@@ -4,6 +4,7 @@ import { mapProvidedTag } from "../helpers/rtkQueryHelper";
 import { baseStoreApi } from "../store/storeApi";
 import { CustomersResultData } from "./customersApi";
 
+
 const paymentsApi = baseStoreApi.injectEndpoints({
   endpoints: (builder) => ({
     getPayments: builder.query<PaymentResultData[], void>({

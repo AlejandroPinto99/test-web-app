@@ -18,3 +18,19 @@ export const SeeList = styled(Typography)(({theme}) => ({
     },
 }))
 
+export const StyledTextField = styled(TextField)(({theme}) => ({
+        '& label.Mui-focused': {
+          color: '#D8C295',
+        },
+        '& .MuiOutlinedInput-root': {
+          '&:hover fieldset': {
+            borderColor: '#D8C295',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#D8C295',
+          },
+          
+        },
+      
+}))
+

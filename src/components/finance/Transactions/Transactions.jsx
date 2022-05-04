@@ -3,7 +3,7 @@ import moment from 'moment'
 import _ from 'lodash'
 
 //components
-import TransactionsList from './styles/TransactionsList';
+import TransactionsList from './TransactionsList';
 
 import {
     Box,
@@ -12,7 +12,7 @@ import {
   } from '@mui/material';
 
 //Styles
-import { Title, SeeList } from './styles'
+import { Title, SeeList, StyledTextField} from './styles'
 
 //Icons
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -58,7 +58,7 @@ const Transactions = () => {
                 </SeeList>
                 
             </Box>
-                <TextField 
+                <StyledTextField
                 id="outlined-search" 
                 label="Search a Transaction" 
                 type="search" 

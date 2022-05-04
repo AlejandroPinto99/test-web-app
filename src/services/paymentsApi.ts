@@ -7,7 +7,7 @@ import { CustomersResultData } from "./customersApi";
 const paymentsApi = baseStoreApi.injectEndpoints({
   endpoints: (builder) => ({
     getPayments: builder.query<PaymentResultData[], void>({
-      query: () => ({ url: "/payment" }),
+      query: () => ({ url: "/payment"}),
       providesTags: (result, error, arg) => {
         return mapProvidedTag<PaymentResultData>(
           result ?? [],

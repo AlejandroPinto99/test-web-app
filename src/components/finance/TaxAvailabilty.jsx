@@ -11,7 +11,7 @@ const TaxAvailability = () => {
     return(
         <Box style={{backgroundColor: 'white', borderRadius: '15px', padding: '0.5rem 2rem', height: '180px', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)', border: '2px solid #D8C295'}}>
             <Box >
-                <Typography component="h3" style={{fontFamily: 'Lato', fontWeight: 600, fontSize: '1.2rem', color: '#525252'}}>TaxAvailability</Typography>
+                <Typography component="h3" style={{fontFamily: 'Lato', fontWeight: 600, fontSize: '1.2rem', color: '#525252'}}>Tax Availability</Typography>
                 <Typography component="p" style={{fontFamily: 'Lato', fontSize: '2.5rem', fontWeight: 800}}>
                     $  5,478<span style={{fontSize: '2rem'}}>.00</span>
                 </Typography>

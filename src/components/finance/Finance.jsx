@@ -22,10 +22,14 @@ import ChartContainer from './chart/ChartContainer'
 
 import { gtm } from '../../lib/gtm';
 
+import { useGetPaymentsQuery } from '../../services/paymentsApi'
+
 
 const Overview = () => {
   const [displayBanner, setDisplayBanner] = useState(true);
-  
+  const {data, isLoading, refetch} = useGetPaymentsQuery()
+
+  console.log({data})
 
 
   useEffect(() => {

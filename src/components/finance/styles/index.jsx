@@ -7,6 +7,7 @@ export const CardContainer = styled.div(({ theme, backgroundColor, height, paddi
     display: 'flex',
     justifyContent: 'space-around',
     backgroundColor: `${backgroundColor}` ,
+    boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
     fontFamily: 'Lato',
     borderRadius: '15px', 
     padding: `${paddingY} 2rem`, 

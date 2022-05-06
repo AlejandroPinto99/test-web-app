@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import moment from 'moment'
 import _ from 'lodash'
 
@@ -22,6 +22,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useGetTransactionsQuery } from '../../../services/transactionsApi'
 
 const Transactions = () => {
+    const [search, setSearch] = useState('')
+
     const {data: transactions ,isLoading, refetch} = useGetTransactionsQuery (undefined, 
         {
           selectFromResult: ({data, isLoading, refetch}) => {
@@ -47,7 +49,7 @@ const Transactions = () => {
         });
 
     return(
-        <Box style={{width: '35%', display: 'flex', flexDirection: 'column'}}>
+        <Box style={{width: '35%', display: 'flex', flexDirection: 'column', marginLeft: '1.5rem'}}>
             <Box style={{display: 'flex', justifyContent:'space-around', alignItems: 'center'}}>
                 <Title>Transactions</Title>
                 <SeeList>
@@ -63,10 +65,11 @@ const Transactions = () => {
                 label="Search a Transaction" 
                 type="search" 
                 style={{margin: '0.2rem 3rem'}}
+                onChange={e => setSearch(e.target.value)}
               />
 
             <Box style={{display: 'flex', justifyContent:'center'}}>
-                <TransactionsList transactions={transactions} />
+                <TransactionsList transactions={transactions} search={search}/>
             </Box>
             
             

@@ -17,7 +17,7 @@ const IncreaseIndicator = ({increase, value}) => {
             borderRadius: '100%', padding: '2px 6px 0px 6px'}}>
                 <StatisticArrow ArrowColor={TextColor} />
             </label>
-            <Typography component="h2" style={{fontFamily: 'Lato', marginLeft: '0.2rem', fontWeight: 700, color: `${TextColor}`}}> {value}% </Typography>
+            <Typography component="h2" style={{fontFamily: 'Lato',  marginLeft: '0.2rem', fontWeight: 700, color: `${TextColor}`}}> {value}% </Typography>
         </Box>
     );
 };

@@ -8,7 +8,7 @@ import { CustomersResultData } from "./customersApi";
 const paymentsApi = baseStoreApi.injectEndpoints({
   endpoints: (builder) => ({
     getPayments: builder.query<PaymentResultData[], void>({
-      query: () => ({ url: "/payment"}),
+      query: () => ({ url: "/payment", method: 'get'}),
       providesTags: (result, error, arg) => {
         return mapProvidedTag<PaymentResultData>(
           result ?? [],
@@ -81,4 +81,9 @@ interface RefundPaymentResultData {
   source_transfer_reversal?: string;
   status?: string;
   transfer_reversal?: string;
+}
+
+export interface Pagination<T> {
+  data: T[];
+  has_more: boolean;
 }

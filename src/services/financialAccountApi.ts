@@ -3,7 +3,7 @@ import { baseStoreApi } from "../store/storeApi";
 const financialAccountApi = baseStoreApi.injectEndpoints({
   endpoints: (builder) => ({
     getFinancialAccount: builder.query<FinancialAccountResultData, void>({
-      query: () => ({ url: "/account/financial" }),
+      query: () => ({ url: "/finance/account" }),
       providesTags: ["financialAccount"],
       transformResponse: (response) => response.result,
     }),
@@ -14,6 +14,14 @@ const financialAccountApi = baseStoreApi.injectEndpoints({
       providesTags: ["financialAccountDashboard"],
       transformResponse: (response) => response.result,
     }),
+    getCashFlow: builder.query<CashFlowRestData, void>({
+     query:(data) => {
+       const timezone = data
+
+       return { url: "/finance/analytics", method: "POST", data: timezone };
+     },
+     transformResponse: (response) => response.result
+    }),
   }),
   overrideExisting: false,
 });
@@ -21,10 +29,15 @@ const financialAccountApi = baseStoreApi.injectEndpoints({
 export const {
   useGetFinancialAccountQuery,
   useGetFinancialAccountDashboardQuery,
+  useGetCashFlowQuery,
 } = financialAccountApi;
 
 interface FinancialAccountResultData {
   financial_addresses?: Array<{
     aba?: { routing_number?: string; account_number?: string };
   }>;
+}
+
+interface CashFlowRestData {
+  timezone?: string;
 }

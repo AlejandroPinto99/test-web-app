@@ -9,12 +9,14 @@ import { DashboardLayout } from '../dashboard/dashboard-layout';
 
 //API
 
-import { useGetTransactionsQuery } from '../../services/transactionsApi'
+import { useGetAccountStateQuery } from '../../services/accountApi'
+import { useGetTaxQuery } from '../../services/taxApi'
+import { useGetFinancialAccountQuery } from '../../services/financialAccountApi'
 
 //Cards
 import Balance from './Balance';
 import AccountDetails from './AccountDetails';
-import TaxAvailability from './TaxAvailabilty';
+import Liability from './TaxLiability';
 import AvailablePoints from './AvailablePoints';
 import Transactions from './Transactions/Transactions';
 //Chart
@@ -22,14 +24,16 @@ import ChartContainer from './chart/ChartContainer'
 
 import { gtm } from '../../lib/gtm';
 
-import { useGetPaymentsQuery } from '../../services/paymentsApi'
+//Icons
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 
-const Overview = () => {
+const Finance = () => {
   const [displayBanner, setDisplayBanner] = useState(true);
-  const {data, isLoading, refetch} = useGetPaymentsQuery()
-
-  console.log({data})
+  const {data: account, isLoading, isSuccess} = useGetAccountStateQuery()
+  const {data: financeAccount, isSuccess: financeIsSucess } = useGetFinancialAccountQuery()
+  const {data: taxes, isSuccess: taxesIsSuccess} = useGetTaxQuery()
+  
 
 
   useEffect(() => {
@@ -45,12 +49,6 @@ const Overview = () => {
     }
   }, []);
 
-  const handleDismissBanner = () => {
-    // Update the persistent state
-    // globalThis.sessionStorage.setItem('dismiss-banner', 'true');
-    setDisplayBanner(false);
-  };
-
   return (
     <>
       <Head>
@@ -58,49 +56,57 @@ const Overview = () => {
           Persona | Finance
         </title>
       </Head>
-      <Box component="main" sx={{py: -1, ml: 20}}>
-          <Grid container >
-            <Grid item xs={12}>
-                <Box sx={{ mb: 2}}>
-                  <Typography variant="h4" style={{fontWeight: 600, fontSize: '1.5rem'}}>
-                    Good Morning, Eran. Welcome to Persona!
-                  </Typography>
-                </Box>     
-            </Grid>
-          </Grid>
+      {
+        isSuccess && financeIsSucess && taxesIsSuccess && (
+          <Box component="main" sx={{py: -1, ml: 20}}>
+        
+            <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+              <Typography variant="h4" style={{fontWeight: 600, fontSize: '1.5rem'}}>
+                Good Morning, Eran. Welcome to Persona!
+              </Typography>
 
-          <Box style={{display: 'flex'}}>
-              <Grid container spacing={3} style={{width: '65%'}}>
-                  <Grid item xs={12} xl={7} >
-                      <Balance />
-                  </Grid>
-                  <Grid item xs={12} xl={5} >
-                      <AccountDetails />
-                  </Grid>
-                  <Grid item xs={12} xl={7}  >
-                      <TaxAvailability />
-                  </Grid>
-                  <Grid item xs={12} xl={5} >
-                      <AvailablePoints />
-                  </Grid>
-                  <Grid item xs={12}>
-                      <ChartContainer />
-                  </Grid>
-              </Grid>
+              <NotificationsNoneIcon style={{color: '#D8C295', fontSize: '1.8rem', marginRight: '3.5rem', cursor: 'pointer'}} />
+            </Box>     
+           
+            <Box style={{display: 'flex'}}>
+                <Grid container spacing={3} style={{width: '65%'}}>
+                    <Grid item xs={12} xl={7} >
+                        <Balance accountBalance={account.balance.accountBalance} paymentsBalance={account.balance.paymentsBalance} />
+                    </Grid>
+                    <Grid item xs={12} xl={5} >
+                        <AccountDetails
+                        bankAddress="200 West St, New York, NY 10282" 
+                        routingNumber={financeAccount.financial_addresses[0].aba.routing_number} 
+                        accountName={financeAccount.financial_addresses[0].aba.account_holder_name}
+                        accountNumber={financeAccount.financial_addresses[0].aba.account_number}
+                        />
+                    </Grid>
+                    <Grid item xs={12} xl={7}  >
+                        <Liability tax={taxes} />
+                    </Grid>
+                    <Grid item xs={12} xl={5} >
+                        <AvailablePoints points={account.points}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ChartContainer />
+                    </Grid>
+                </Grid>
 
-              <Transactions />
+                <Transactions />
             </Box>
-            
       </Box>
+        )
+      }
+     
     </>
   );
 };
 
-Overview.getLayout = (page) => (
+Finance.getLayout = (page) => (
     <DashboardLayout>
       {page}
     </DashboardLayout>
 
 );
 
-export default Overview;
+export default Finance;

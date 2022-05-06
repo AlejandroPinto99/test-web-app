@@ -8,19 +8,19 @@ import { baseStoreApi } from "../store/storeApi";
 const storeServiceApi = baseStoreApi.injectEndpoints({
   endpoints: (builder) => ({
     getEvents: builder.query<EventsResultData[], void>({
-      query: () => ({ url: "/schedule/event" }),
+      query: () => ({ url: "/store/event" }),
       providesTags: (result, error, arg) => {
         return mapProvidedTag(result ?? [], CacheTagsEnum.Event, "id");
       },
       transformResponse: (response) => response.result,
     }),
     syncCalendar: builder.query<void, void>({
-      query: () => ({ url: "/schedule/sync" }),
+      query: () => ({ url: "/store/sync" }),
       transformResponse: (response) => response.result,
     }),
 
     getServices: builder.query<ServiceResultData[], void>({
-      query: () => ({ url: "/schedule/service" }),
+      query: () => ({ url: "/store/service" }),
       providesTags: (result, error, arg) => {
         return mapProvidedTag(result ?? [], CacheTagsEnum.Service, "_id");
       },
@@ -32,8 +32,8 @@ const storeServiceApi = baseStoreApi.injectEndpoints({
     >({
       query: (data) => {
         const url = data._id
-          ? `/schedule/service/${data._id}`
-          : "/schedule/service";
+          ? `/store/service/${data._id}`
+          : "/store/service";
 
         const constraints = data.constraints?.map((item) => ({
           _id: item._id,
@@ -69,7 +69,7 @@ const storeServiceApi = baseStoreApi.injectEndpoints({
       ChangeServiceStatusResultData,
       number
     >({
-      query: (id) => ({ url: `/schedule/service/${id}/status`, method: "PUT" }),
+      query: (id) => ({ url: `/store/service/${id}/status`, method: "PUT" }),
       invalidatesTags: (response, error, arg) => [
         {
           type: CacheTagsEnum.Service,
@@ -80,7 +80,7 @@ const storeServiceApi = baseStoreApi.injectEndpoints({
     }),
     cancelEvent: builder.mutation<void, CancelEventRestData>({
       query: ({ eventId }) => ({
-        url: `/schedule/event/${eventId}`,
+        url: `/store/event/${eventId}`,
         method: "DELETE",
       }),
       invalidatesTags: (response, error, arg) => [
@@ -94,7 +94,7 @@ const storeServiceApi = baseStoreApi.injectEndpoints({
     }),
     setCname: builder.mutation<CnameResultData, CnameRestData>({
       query: (data) => ({
-        url: "/schedule/cname",
+        url: "/store/cname",
         method: "POST",
         data: { cname: data.cname },
       }),

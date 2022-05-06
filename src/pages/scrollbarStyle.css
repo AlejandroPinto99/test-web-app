@@ -1,14 +1,18 @@
 ::-webkit-scrollbar {
-    width: 3px;
+    width: 5px;
+    left:-100px;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
-    border-radius: 2px;
+    border-radius: 10px;
+    
+    
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: rgba(216, 194, 149, 1);
     border-radius: 15px;
+    
   }

@@ -18,10 +18,11 @@ import {ClientList} from './ClientList/ClientList'
 import {PaymentsList} from './PaymentList/PaymentList'
 import {Revenue} from './Revenue/Revenue'
 import {StatisticsContainer} from './Statistics/StatisticsContainer'
-import Chart from './chart/Chart'
 import ChartConatainer from './chart/ChartContainer'
 
 import { gtm } from '../../lib/gtm';
+
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 
 const Bussiness = () => {
@@ -31,20 +32,6 @@ const Bussiness = () => {
     gtm.push({ event: 'page_view' });
   }, []);
 
-  useEffect(() => {
-    // Restore the persistent state from local/session storage
-    const value = globalThis.sessionStorage.getItem('dismiss-banner');
-
-    if (value === 'true') {
-      // setDisplayBanner(false);
-    }
-  }, []);
-
-  const handleDismissBanner = () => {
-    // Update the persistent state
-    // globalThis.sessionStorage.setItem('dismiss-banner', 'true');
-    setDisplayBanner(false);
-  };
 
   return (
     <>
@@ -53,28 +40,36 @@ const Bussiness = () => {
           Persona | Bussiness
         </title>
       </Head>
-      <Box component="main" sx={{py: -1, ml: 15, display: 'flex'}}>
-          <Grid container >
-            <Grid item xs={12}>
-                <Box sx={{ mb: 4, ml: 2}}>
-                  <Typography variant="h4" sstyle={{fontWeight: 600, fontSize: '1.5rem'}}>
-                    Good Morning, Eran. Welcome to Persona!   
-                  </Typography>
-                </Box>
-                <Revenue />           
+      <Box component="main" sx={{py: -1, ml: 20}}>
+         
+        <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+          <Typography variant="h4" style={{fontWeight: 600, fontSize: '1.5rem'}}>
+              Good Morning, Eran. Welcome to Persona!
+          </Typography>
+          <NotificationsNoneIcon style={{color: '#D8C295', fontSize: '1.8rem', marginRight: '3.5rem', cursor: 'pointer'}} />
+        </Box>
+
+        <Box style={{display: 'flex'}}>
+            <Grid containerspacing={3} style={{width: '65%'}}>
+              <Grid item xs={12}>
+                    <Revenue />
+              </Grid>
+              <Grid item xs={12}>
                 <StatisticsContainer />
+              </Grid>
+              <Grid item xs={12}>
+                  <ChartConatainer
+                  title="Revenue" message="This is the amount of money you earned in the last 7 days" /> 
+              </Grid>  
             </Grid>
-            <Grid item md={12} xs={12}>
-                <ChartConatainer
-                title="Revenue" message="This is the amount of money you earned in the last 7 days" /> 
-            </Grid>  
-          </Grid>
-          <Box sx={{width: '50%', height: '100%'}}>
-            <Box sx={{mb: '2rem'}}>
-              <ClientList title="Your Recent Clients" placeholder="Search in all Persona"/>
-            </Box>
-            <Box>
-              <PaymentsList title="Your Buisiness Payments" placeholder="Search a Payment"/> 
+
+            <Box sx={{width: '35%'}}>
+              <Box sx={{mb: '2rem'}}>
+                <ClientList title="Your Recent Clients" placeholder="Search in all Persona"/>
+              </Box>
+              <Box>
+                <PaymentsList title="Your Buisiness Payments" placeholder="Search a Payment"/> 
+              </Box>
             </Box>
           </Box>
       </Box>

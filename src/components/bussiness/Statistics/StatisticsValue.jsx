@@ -23,7 +23,7 @@ const StatisticValue = ({title, value, increase}) => {
     const [open, setOpen] = useState(true);
 
     return(
-        <Box sx={{width: '45%', px:'0.6rem'}}>
+        <Box sx={{px:'0.6rem'}}>
             
             <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                 <Typography component="h4" style={{color: 'rgba(163, 163, 163, 1)', fontSize:'0.9rem'}}>{title}</Typography>

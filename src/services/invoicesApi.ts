@@ -1,23 +1,24 @@
 import { baseStoreApi } from "../store/storeApi";
-import { InputSelectData } from "../components/InputSelect";
+import { InputSelectData } from "../components/common/InputSelect";
 import { DateHelper } from "../helpers/dateHelper";
 import { CacheTagsEnum } from "../enums/cache-tags-enum";
 import { mapProvidedTag } from "../helpers/rtkQueryHelper";
 import { PaymentResultData } from "./paymentsApi";
 import { InvoiceTypeEnum } from "../enums/invoice-enum";
+import { Pagination } from "./paymentsApi"
 
 const invoiceApi = baseStoreApi.injectEndpoints({
   endpoints: (build) => ({
-    getInvoices: build.query<PaymentResultData[], InvoiceParamData | void>({
+    getInvoices: build.query<Pagination<PaymentResultData>, InvoiceParamData | void>({
       query: (arg) => {
         const params = {
           lastInvoiceId: arg? arg?.lastInvoiceId: undefined,
         };
-        return { url: "/invoice", params };
+        return { url: "/payment/invoice", params };
       },
       providesTags: (result, error, arg) => {
         return mapProvidedTag<PaymentResultData>(
-          result ?? [],
+          result?.data ?? [],
           CacheTagsEnum.Invoice,
           "id"
         );
@@ -216,6 +217,7 @@ interface MarkInvoicePaidRestData {
   invoiceId: number;
   customerId: number;
 }
+
 
 export enum IntervalEnum {
   Day = "day",

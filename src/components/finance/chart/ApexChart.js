@@ -1,22 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { ReactApexChart } from './Chart'
 
-import {get7days, DateChartFormat} from '../../../helpers/chartHelper'
+const ApexChart = ({setDataIndex, expensesValues, incomesValues, expensesDate, Zoom }) => {
 
-const ApexChart = () => {
-
-    const days = DateChartFormat(get7days()).reverse();
-      
     const series = [{
-          name: 'series1',
-          data: [31, 103, 270, 420, 350, 109, 300]
+          data: expensesValues
+        }, 
+        {
+          data: incomesValues
         }]
 
     const options = {
           chart: {
+            
             height: 350,
-            type: 'area'
+            type: 'area',
+            toolbar: {
+              show: false
+            },
+            events: {
+              click: function(event, chartContext, config) {
+                const y = config.dataPointIndex
+                setDataIndex(y)
+              }, 
+            }
+          },
+          legend: {
+            show: false
           },
           dataLabels: {
             enabled: false
@@ -24,18 +35,42 @@ const ApexChart = () => {
           stroke: {
             curve: 'smooth'
           },
+          yaxis: {
+            labels: {
+                show: true,
+                align: 'right',
+                minWidth: 0,
+                maxWidth: 160,
+                style: {
+                    colors: ['#A3A3A3'],
+                    fontSize: '12px',
+                    fontFamily: 'Lato',
+                    fontWeight: 700,
+                    align: 'center'
+                },
+              formatter: function (value) {
+                return "$" + value + ".00" ;
+              }
+            },
+          },
           xaxis: {
             type: 'category',
-            categories: days,
+            categories: expensesDate,
+            min: Zoom.min,
+            max: Zoom.max,
             labels: {
+              show: false,
               style: {
                 fontSize: '1rem',
                 fontFamily: 'Lato',
-                color: '#525252'
+                color: 'white'
               }
-          }
+            },
+            title: {
+              text: ""
+            },
           },
-          colors: ['#D8C295'],
+          colors: [ '#525252', '#D8C295'],
       };
 
       return ( 

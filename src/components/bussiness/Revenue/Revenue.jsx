@@ -175,7 +175,6 @@ const Revenue = () => {
                             <label style={{color: 'rgba(163, 163, 163, 1)', fontSize: '0.8rem'}}>Services</label>
                             <Typography style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '700', fontFamily: 'Lato'}}>$1,400.00</Typography>
                         </Box>
-                        
                     </Box>
                 </Box>
             </Box>

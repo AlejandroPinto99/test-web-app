@@ -26,15 +26,17 @@ import { gtm } from '../../lib/gtm';
 
 //Icons
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import Loading from '../Loading/Loading';
 
 
 const Finance = () => {
   const [displayBanner, setDisplayBanner] = useState(true);
   const {data: account, isLoading, isSuccess} = useGetAccountStateQuery()
-  const {data: financeAccount, isSuccess: financeIsSucess } = useGetFinancialAccountQuery()
-  const {data: taxes, isSuccess: taxesIsSuccess} = useGetTaxQuery()
+  const {data: financeAccount, isLoading: isFinanceLoading, isSuccess: financeIsSuccess } = useGetFinancialAccountQuery()
+  const {data: taxes, isLoading: isTaxLoading, isSuccess: taxesIsSuccess} = useGetTaxQuery()
   
-
+  const pageLoading = () => {return isLoading && isFinanceLoading && isTaxLoading}
+  const pageSuccess = () => {return isSuccess && financeIsSuccess && taxesIsSuccess}
 
   useEffect(() => {
     gtm.push({ event: 'page_view' });
@@ -50,14 +52,17 @@ const Finance = () => {
   }, []);
 
   return (
-    <>
+    pageLoading() ? 
+      <Loading /> :
+        pageSuccess() ? 
+        <>
       <Head>
         <title>
           Persona | Finance
         </title>
       </Head>
       {
-        isSuccess && financeIsSucess && taxesIsSuccess && (
+        isSuccess && financeIsSuccess && taxesIsSuccess && (
           <Box component="main" sx={{py: -1, ml: 20}}>
         
             <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
@@ -97,8 +102,8 @@ const Finance = () => {
       </Box>
         )
       }
-     
-    </>
+    </> : null
+
   );
 };
 

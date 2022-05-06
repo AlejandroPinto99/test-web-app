@@ -13,6 +13,7 @@ import { useGetCashFlowQuery } from '../../../services/financialAccountApi'
 
 //Icons
 import Legend from '../../../icons/legend'
+import Loading from '../../Loading/Loading';
 
 
 const chartTimeOptions = ['3 months', '6 months', '1 year', '2 years', 'YTD', 'Custom']
@@ -110,82 +111,82 @@ const ChartContainer= () => {
 
 
     return(
+        isLoadingCashFlow ?
+        <Box style={{height: '100px', position: 'relative'}}>
+            <Loading />
+        </Box> : 
+        isSuccess ? 
         <ChartContainerStyle >
-            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}> 
-                <Typography style={{fontFamily: 'Lato', fontSize: '1.5rem', fontWeight: 900}}>
-                    Your Insights
+        <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}> 
+            <Typography style={{fontFamily: 'Lato', fontSize: '1.5rem', fontWeight: 900}}>
+                Your Insights
+            </Typography>
+            <Box style={{display: 'flex', alignItems: 'center'}}>
+                <Typography component="p" style={{fontSize: '0.8rem'}}>
+                    See more Insights 
                 </Typography>
-                <Box style={{display: 'flex', alignItems: 'center'}}>
-                    <Typography component="p" style={{fontSize: '0.8rem'}}>
-                        See more Insights 
-                    </Typography>
-                    <ArrowForwardIcon fontSize="small" style={{color:'#D8C295'}} />
-                </Box>
+                <ArrowForwardIcon fontSize="small" style={{color:'#D8C295'}} />
             </Box>
+        </Box>
 
-            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem'}}>
-                {
-                    chartTimeOptions && chartTimeOptions.map((item, i) => (
-                    <div>
-                        {
-                            item === chartTime ? (<CharTimeButton  variant="text" onClick={()=> setChartTime(item)}>{item}</CharTimeButton>) :
-                           (<SelectedCharTimeButton variant="text" onClick={()=> setChartTime(item)}>{item}</SelectedCharTimeButton>)
-                        }
-                    </div>
-                    ))
-                }
-            </Box>
-
-            <Grid container >
-                {
-                   isSuccess && (
-                    <>
-                        <Grid item xs={6}>
-                            <ChartTag>
-                                <Box style={{display: 'flex', alignItems: 'center'}}>
-                                    <Typography component="h4" >INCOME</Typography>
-                                    <Legend color="#D8C295"  width="4rem" height="3rem"/>
-                                </Box>
-                                <Typography component="p">
-                                    {formatDollars(incomesValues[dataIndex])}
-                                    {/* <span>$ </span>
-                                    17,299
-                                    <span>.00</span> */}
-                                </Typography>
-                            </ChartTag>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <ChartTag>
-                                <Box style={{display: 'flex', alignItems: 'center'}}>
-                                    <Typography component="h4">EXPENSE</Typography>
-                                    <Legend color="#525252" width="4rem" height="3rem"/>
-                                </Box>
-                                <Typography component="p">
-                                    {formatDollars(expensesValues[dataIndex])}
-                                    {/* <span>$ </span>
-                                    5,345
-                                    <span>.00</span> */}
-                                </Typography>
-                            </ChartTag>
-                        </Grid>
-                    </>
-                    )
-                }
-            </Grid>
-        
+        <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem'}}>
             {
-                zoom && (
-                <ApexChart 
-                setDataIndex={setDataIndex} 
-                expensesValues={expensesValues} 
-                incomesValues={incomesValues} 
-                expensesDate={expensesDate}
-                Zoom={ zoom }
-                />
+                chartTimeOptions && chartTimeOptions.map((item, i) => (
+                <div>
+                    {
+                        item === chartTime ? (<CharTimeButton  variant="text" onClick={()=> setChartTime(item)}>{item}</CharTimeButton>) :
+                       (<SelectedCharTimeButton variant="text" onClick={()=> setChartTime(item)}>{item}</SelectedCharTimeButton>)
+                    }
+                </div>
+                ))
+            }
+        </Box>
+
+        <Grid container >
+            {
+               isSuccess && (
+                <>
+                    <Grid item xs={6}>
+                        <ChartTag>
+                            <Box style={{display: 'flex', alignItems: 'center'}}>
+                                <Typography component="h4" >INCOME</Typography>
+                                <Legend color="#D8C295"  width="4rem" height="3rem"/>
+                            </Box>
+                            <Typography component="p">
+                                {formatDollars(incomesValues[dataIndex])}
+                            </Typography>
+                        </ChartTag>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <ChartTag>
+                            <Box style={{display: 'flex', alignItems: 'center'}}>
+                                <Typography component="h4">EXPENSE</Typography>
+                                <Legend color="#525252" width="4rem" height="3rem"/>
+                            </Box>
+                            <Typography component="p">
+                                {formatDollars(expensesValues[dataIndex])}
+                            </Typography>
+                        </ChartTag>
+                    </Grid>
+                </>
                 )
             }
-           
-        </ChartContainerStyle>
+        </Grid>
+    
+        {
+            zoom && (
+            <ApexChart 
+            setDataIndex={setDataIndex} 
+            expensesValues={expensesValues} 
+            incomesValues={incomesValues} 
+            expensesDate={expensesDate}
+            Zoom={ zoom }
+            />
+            )
+        }
+       
+    </ChartContainerStyle> : null
+            
     )
 }
 

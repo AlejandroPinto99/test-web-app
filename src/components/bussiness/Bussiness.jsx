@@ -40,17 +40,21 @@ const Bussiness = () => {
           Persona | Bussiness
         </title>
       </Head>
-      <Box component="main" sx={{py: -1, ml: 20}}>
+      <Box component="main" 
+        sx={{py: -1, ml: 20}}>
          
-        <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+        <Box 
+          sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
           <Typography variant="h4" style={{fontWeight: 600, fontSize: '1.5rem'}}>
               Good Morning, Eran. Welcome to Persona!
           </Typography>
           <NotificationsNoneIcon style={{color: '#D8C295', fontSize: '1.8rem', marginRight: '3.5rem', cursor: 'pointer'}} />
         </Box>
 
-        <Box style={{display: 'flex'}}>
-            <Grid containerspacing={3} style={{width: '65%'}}>
+        <Box 
+          style={{display: 'flex'}}>
+            <Grid containerspacing={3} 
+              style={{width: '65%'}}>
               <Grid item xs={12}>
                     <Revenue />
               </Grid>

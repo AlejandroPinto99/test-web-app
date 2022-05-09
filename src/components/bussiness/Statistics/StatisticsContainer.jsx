@@ -35,12 +35,12 @@ const StatisticsContainer = () => {
       } = useGetEventsQuery()
 
     return(
-        <Container >
+        <Container style={{padding: '0'}} >
             <Typography component="h3" style={{fontSize: '1.5rem', color: 'rgba(0, 0, 0, 1)', fontWeight: '900', marginBottom: '0.8rem'}}>Your Bussiness Statistics</Typography>
             {
                 invoices && events && customers &&
                 (
-                    <Grid container spacing={2}>
+                    <Grid container spacing={1}>
                         <Grid item xs={6}>
                             <StatisticCard title="Active Clients" dateInfo="Year to date" 
                             param1="Active Clients" param1Value={getActiveClients(customers)} param1Increase={4}
@@ -50,7 +50,7 @@ const StatisticsContainer = () => {
                         <Grid item xs={6}>
                             <StatisticCard title="Bussiness Activity" dateInfo="Last 30 Days"
                                 param1="Sessions Scheduled" param1Value={events.length} param1Increase={16}
-                                param2="Invoices Sent" param2Value={invoices.length} param2Increase={3}/>
+                                param2="Invoices Sent" param2Value={8} param2Increase={3}/>
                         </Grid>
                     </Grid>
                 )

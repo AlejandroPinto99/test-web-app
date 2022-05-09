@@ -16,6 +16,9 @@ import { Stack } from '@mui/material';
 //Fonts
 import {createTheme} from '@material-ui/core/styles'
 
+import { PaymentTitle, PaymentInfo, TitleContainer  } from './styles'
+import { ListContainer } from '../ClientList/styles'
+
 // export interface PaymentsListProps{
 //     title: string;
 //     placeholder: string;
@@ -35,16 +38,16 @@ import {createTheme} from '@material-ui/core/styles'
 const Payment = (props) => { 
 
     return(
-      <Box component="div" sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
-            <Box sx={{ml: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'start'}}>
-                <Typography component="h4" style={{fontSize: '1.2rem', fontWeight: '400', color: 'rgba(82, 82, 82, 1)', fontFamily: 'Lato'}}>{props.name}</Typography>
-            </Box>
+         <Box component="div" sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
+            
+            <PaymentTitle >{props.name}</PaymentTitle>
+            
           
-          <Box sx={{display: 'flex', flexDirection: 'column', ml: '2rem', mr: '1rem'}}>
-              <Typography component="span" style={{fontWeight: '600', fontSize: '1.2rem', textAlign:'right', color: 'rgba(82, 82, 82, 1)'}}>${formatCentsToDollars(props.amount)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
-              <Typography component="span" style={{textAlign: 'right', color: `${getPaymentStatusColor(props.status, props.created).A100}`}}>{getPaymentStatus(props.type, props.status, props.created, props.refunded, props.disputed)}</Typography>
-          </Box>
-      </Box>
+            <PaymentInfo props={props} getPaymentStatusColor={getPaymentStatusColor} >
+                <Typography component="h3" s>${formatCentsToDollars(props.amount)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
+                <Typography component="p">{getPaymentStatus(props.type, props.status, props.created, props.refunded, props.disputed)}</Typography>
+            </PaymentInfo>
+        </Box>
     )
 }
 
@@ -69,9 +72,9 @@ const PaymentsList = ({title, placeholder}) => {
    
     return(
         <Container maxWidth="sm">
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'start'}}>
-                <Typography  variant="h5" component="h2" style={{marginLeft: '2.5rem', fontWeight: 900, fontSize: '1.5rem', fontFamily: 'Lato' }}>{title}</Typography>
-            </Box>
+            <TitleContainer  >
+                <Typography  component="h2" >{title}</Typography>
+            </TitleContainer>
 
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'start', mb: '1rem', ml: '2.5rem'}}>
             <TextField
@@ -94,8 +97,7 @@ const PaymentsList = ({title, placeholder}) => {
             </Box>
 
             <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '2rem', mb: '2rem'}}>
-                <Stack sx={{ width: '85%', height: '300px', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)', 
-                borderRadius: '20px', overflow: "hidden", overflowY: 'scroll'}}>
+                <ListContainer >
                     {
                         payments && (payments.map((payment, i) => {
                             return(
@@ -104,7 +106,7 @@ const PaymentsList = ({title, placeholder}) => {
                             )
                         }))
                     }
-                </Stack>
+                </ListContainer>
             </Box>
         </Container> 
     );

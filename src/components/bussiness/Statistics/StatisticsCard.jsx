@@ -7,6 +7,9 @@ import {DateInfoTag} from '../../common/DateInfoTag'
 import {IconButton} from '../../widgets/buttons/IconBotton'
 import {StatisticValue } from './StatisticsValue'
 
+//Styles
+import { StatisticGrid, TitleContainer } from './styles'
+
 // export interface StatisticsProps{
 //     title?: string;
 //     dateInfo?: string;
@@ -20,16 +23,15 @@ import {StatisticValue } from './StatisticsValue'
 
 const StatisticCard = ({title, dateInfo, param1, param1Value, param1Increase, param2, param2Value, param2Increase}) => {
     return(
-        <Grid container sx={{border: '1px solid rgba(216, 194, 149, 1)', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-        borderRadius: '15px', p: '15px', maxHeight: '150px'}}>
+        <StatisticGrid container>
             <Grid item xs={12}>
-                <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-                    <Typography  component="h4" style={{marginRight: '2rem', fontWeight: 900, fontSize: '1.5rem'}}>{title}</Typography>
-                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                <TitleContainer >
+                    <Typography  component="h4" >{title}</Typography>
+                    <Box component="div">
                         <DateInfoTag message={dateInfo} />
                         <IconButton />
                     </Box>
-                </Box>
+                </TitleContainer>
             </Grid>
             
             <Grid item xs={6} >
@@ -40,7 +42,7 @@ const StatisticCard = ({title, dateInfo, param1, param1Value, param1Increase, pa
                 <StatisticValue title={param2} value={param2Value} increase={param2Increase}/>
             </Grid>
          
-        </Grid>
+        </StatisticGrid>
     );
 };
 

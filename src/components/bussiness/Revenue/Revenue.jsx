@@ -7,7 +7,7 @@ import {Chart} from '../../common/chart'
 import IncreaseIndicator from '../../common/IncreaseIndicator'
 
 //Material UI
-import {Box, Typography, Divider} from '@mui/material';
+import {Box, Typography, Divider, Grid} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CircleIcon from '@mui/icons-material/Circle';
 
@@ -21,6 +21,9 @@ import {centToDollar} from '../../../helpers/formatters'
  
 //Fonts
 import 'typeface-lato'
+
+//Styles
+import { RevenueContainer, RevenueTitleSection, RevenueData, IncomingPaymentValue, IncomingPaymentTitle  } from './styles'
 
 const Revenue = () => {
 
@@ -103,82 +106,90 @@ const Revenue = () => {
     //Creating a theme for font
 
     return(
-        <Box sx={{display: 'flex', mb: '1rem', mx:'1rem', border: '1px solid rgba(216, 194, 149, 1)', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-        borderRadius: '15px', pt: '2px', maxHeight: '150px' }}
-        >
+        <RevenueContainer>
             <Box sx={{width: '65%', px: '1rem'}}>
-                <Box sx={{display: 'flex', justifyContent: 'space-between', mt: '6px'}}>
-                    <Typography  component="h2" style={{marginRight: '1.5rem', fontWeight: 600, fontSize: '1.2rem', fontFamily: 'Lato'}}>Your Revenue</Typography>
+
+                <RevenueTitleSection>
+                    <Typography  component="h2" >Your Revenue</Typography>
                     <Box sx={{display: 'flex', alignItems: 'center'}}>
                         <DateInfoTag message="Last 7 Days" />
                         <IconButton />
                     </Box>
-                </Box>
-                <Box sx={{display: 'flex', justifyContent:'space-between'}}>
-                    <Box>
-                        <Typography component="h5" style={{color: 'rgba(0, 0, 0, 1)', fontSize: '2.5rem', fontWeight: '900', fontFamily: 'Lato'}}><span style={{fontSize: '2rem'}}>$</span>15,354.<span style={{fontSize: '2rem'}}>19</span></Typography>
-                        <label style={{color: 'rgba(163, 163, 163, 1)', fontWeight: '700', fontFamily: 'Lato', fontSize: '0.8rem'}} >Cost:</label>
-                          <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '800', marginTop:'0px', fontFamily: 'Lato'}}> $ 5,040.00</Typography>
-                    </Box>
-                    <Box sx={{ml: '2em'}}>
-                        <Box sx={{position: 'relative'}}>
-                            <Chart 
-                                height={150}
-                                options={chart1Options}
-                                series={[40]}
-                                type="radialBar"
-                                width={160} />
+                </RevenueTitleSection>
 
-                            <Box sx={{position: 'absolute', top: '10%' }} >
-                                <Chart 
-                                    height={125}
-                                    options={chart2Options}
-                                    series={[10]}
-                                    type="radialBar"
-                                    width={160} />
-                            </Box>
+                <Grid container >
+                    <Grid item xs={6}>
+                      <RevenueData>
+                          <Typography component="h5" ><span >$</span>15,354.<span >19</span></Typography>
+                          <label >Cost:</label>
+                          <Typography component="p"> $ 5,040.00</Typography>
+                      </RevenueData>
+                    </Grid>
 
-                            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between' ,
-                             position: 'absolute', top:'40%', right: '32%'}}>
-                                <IncreaseIndicator increase={true} value={25} />
-                            </Box>
-                        </Box>
-                    </Box>
+                    <Grid item xs={3}>
+                      <Box sx={{ml: '2rem', mb: '2rem'}}>
+                          <Box sx={{position: 'relative'}}>
+                              <Chart 
+                                  height={160}
+                                  options={chart1Options}
+                                  series={[40]}
+                                  type="radialBar"
+                                  width={100} />
+
+                              <Box sx={{position: 'absolute', top: '10%' }} >
+                                  <Chart 
+                                      height={135}
+                                      options={chart2Options}
+                                      series={[10]}
+                                      type="radialBar"
+                                      width={100} />
+                              </Box>
+
+                              <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between' ,
+                              position: 'absolute', top:'40%', right: '32%'}}>
+                                  <IncreaseIndicator increase={true} value={25} />
+                              </Box>
+                          </Box>
+                      </Box>
+                    </Grid>
                                         
-                    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', ml: '1em' }}>
-                        <Box sx={{display: 'flex', alignItems: 'center'}}>
-                            <CircleIcon style={{fontSize: '0.7rem', color:'rgba(65, 203, 112, 1)'}} />
-                            <Typography component="p" style={{fontFamily: 'Lato', color: 'rgba(82, 82, 82, 1)', fontWeight: '700', marginLeft: '1rem', fontSize: '0.8rem'}}>Last 7 Days Revenue</Typography>
-                        </Box>
-                        <Box sx={{display: 'flex', alignItems: 'center'}}>
-                            <CircleIcon style={{fontSize: '0.7rem', color: 'rgba(216, 194, 149, 1)'}} />
-                            <Typography component="p" style={{fontFamily: 'Lato', color: 'rgba(82, 82, 82, 1)', fontWeight: '700',  marginLeft: '1rem', fontSize: '0.8rem'}}> Average Revenue</Typography>
-                        </Box>
-                    </Box>  
-                </Box>
+                    <Grid item xs={3} >
+                      <Box style={{marginTop: '2rem'}}>
+                          <Box sx={{display: 'flex', alignItems: 'center'}}>
+                              <CircleIcon style={{fontSize: '0.7rem', color:'rgba(65, 203, 112, 1)'}} />
+                              <Typography component="p" style={{fontFamily: 'Lato', color: 'rgba(82, 82, 82, 1)', fontWeight: '700', marginLeft: '1rem', fontSize: '0.8rem'}}>Last 7 Days Revenue</Typography>
+                          </Box>
+                          <Box sx={{display: 'flex', alignItems: 'center'}}>
+                              <CircleIcon style={{fontSize: '0.7rem', color: 'rgba(216, 194, 149, 1)'}} />
+                              <Typography component="p" style={{fontFamily: 'Lato', color: 'rgba(82, 82, 82, 1)', fontWeight: '700',  marginLeft: '1rem', fontSize: '0.8rem'}}> Average Revenue</Typography>
+                          </Box>
+                      </Box> 
+                    </Grid>
+
+                </Grid>
             </Box>
             <Divider orientation="vertical" variant="middle" flexItem />
             <Box sx={{ width: '35%', px: '30px'}}>
-                <Box sx={{display: 'flex', justifyContent: 'space-between',  mt: '10px' }}>
-                    <Typography style={{color: 'rgba(0, 0, 0, 1)', fontSize: '1rem', fontWeight: '600', fontFamily: 'Lato'}}>Incoming Payments</Typography>
+                <IncomingPaymentTitle  >
+                    <Typography component="h4" >Incoming Payments</Typography>
                     <IconButton />
-                </Box>
+                </IncomingPaymentTitle>
                 <Box>
                     <Typography component="p" style={{color: 'rgba(0, 0, 0, 1)', fontWeight: '800', fontSize: '2rem', fontFamily: 'Lato'}}><span style={{fontSize: '1.6rem'}}>$</span>2,400<span style={{fontSize: '1.6rem'}}>.00</span></Typography>
-                    <Box sx={{display: 'flex', justifyContent: 'space-between', mr: '2rem', width: '70%'}}>
+                    <IncomingPaymentValue >
                         <Box>
-                            <label style={{color: 'rgba(163, 163, 163, 1)', fontSize: '0.8rem'}}>Invoices</label>
-                            <Typography style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '700', fontFamily: 'Lato'}}>$ {centToDollar(calculateTotal(invoices))}</Typography>
+                            <label >Invoices</label>
+                            <Typography component="p" >$ {centToDollar(calculateTotal(invoices))}</Typography>
                         </Box>
                         <Divider orientation="vertical" variant="middle" flexItem />
                         <Box>
-                            <label style={{color: 'rgba(163, 163, 163, 1)', fontSize: '0.8rem'}}>Services</label>
-                            <Typography style={{color: 'rgba(82, 82, 82, 1)', fontSize: '1rem', fontWeight: '700', fontFamily: 'Lato'}}>$1,400.00</Typography>
+                            <label >Services</label>
+                            <Typography component="p" >$1,400.00</Typography>
                         </Box>
-                    </Box>
+                    </IncomingPaymentValue>
                 </Box>
             </Box>
-        </Box>
+        </RevenueContainer>
     );
 };
 

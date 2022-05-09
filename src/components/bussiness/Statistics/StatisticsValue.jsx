@@ -13,6 +13,8 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 //components
 import IncreaseIndicator from '../../common/IncreaseIndicator'
 
+import { StatisticsValueTitle, StatisticsValueData } from './styles'
+
 // export interface StatisticValueProps {
 //     title?: string;
 //     value?: number;
@@ -23,21 +25,21 @@ const StatisticValue = ({title, value, increase}) => {
     const [open, setOpen] = useState(true);
 
     return(
-        <Box sx={{px:'0.6rem'}}>
+        <Box sx={{px:'0.6rem', mb: '0.5rem'}}>
             
-            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-                <Typography component="h4" style={{color: 'rgba(163, 163, 163, 1)', fontSize:'0.9rem'}}>{title}</Typography>
+            <StatisticsValueTitle >
+                <Typography component="h4" >{title}</Typography>
                 <Box style={{cursor: 'pointer'}}  onClick={() => setOpen(!open)}>
                     <KeyboardArrowDownIcon sx={{color: 'rgba(163, 163, 163, 1)', transform: `${!open ? 'rotate(180deg)': ''}`}} />
                 </Box>
-            </Box>
+            </StatisticsValueTitle>
 
-            <Box sx={{display:`${!open ? 'none' : 'flex'}`, flexDirection: 'column'}}>
-                <Typography component="p" style={{color: 'rgba(0, 0, 0, 1)', fontSize:'2rem', fontWeight: '800'}}>{value}</Typography>
-                <Box sx={{display:'flex', alignItems: 'center'}}>
+            <StatisticsValueData open={open}>
+                <Typography component="p" >{value}</Typography>
+                <Box component="div" >
                     <IncreaseIndicator increase={true} value={25} />
                 </Box>
-            </Box>
+            </StatisticsValueData>
             
         </Box>
     );

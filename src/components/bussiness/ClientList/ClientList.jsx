@@ -22,6 +22,10 @@ import { useGetCustomersQuery, useGetCustomerQuery }  from '../../../services/cu
 //Fonts
 import {createTheme} from '@material-ui/core/styles'
 
+//Style
+import { ClientContainer, InitialsContainer, InformationContainer,  RevenueContainer, SeeAllListContainer, ListContainer } from './styles'
+
+
 // export interface ClientListProps{
 //     title: string;
 //     placeholder: string;
@@ -36,23 +40,24 @@ import {createTheme} from '@material-ui/core/styles'
 const Client = ({name, email, revenue = 0}) => { 
 
     return(
-      <Box component="div" 
-      sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: '1rem'}}>
+      <ClientContainer>
+          
         <Box sx={{display: 'flex', flexDirection: 'row'}}>
-            <Box sx={{border: '1px solid rgba(216, 194, 149, 1)', borderRadius:'100%', boxShadow: '10px', ml: '1rem'}}>
-                <Typography component="p" style={{ fontSize: '1.2rem', fontWeight: '600', padding: '15px 17px'}}>CN</Typography>
-            </Box>
+            <InitialsContainer >
+                <Typography component="p" >CN</Typography>
+            </InitialsContainer>
 
-            <Box sx={{ml: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'start'}}>
-                <Typography component="h4" style={{fontSize: '1.2rem', fontWeight: '600', fontFamily: 'Lato'}}>{name}</Typography>
-                <Typography component="p" style={{color: 'rgba(82, 82, 82, 1)', fontFamily: 'Lato', fontSize: '0.8rem'}}>{email}</Typography>
-            </Box>
-          </Box>
-          <Box sx={{display: 'flex', flexDirection: 'column',  ml: '2rem', mr: '1rem'}}>
-              <Typography component="span" style={{fontWeight: '600', fontSize: '1rem', textAlign:'right'}}>$ {formatCentsToDollars(revenue)}<span style={{fontSize: '1rem'}}>.00</span></Typography>
-              <Typography component="span" style={{color: 'rgba(163, 163, 163, 1)', textAlign: 'right'}}>Revenue</Typography>
-          </Box>
-      </Box>
+            <InformationContainer>
+                <Typography component="h4" >{name}</Typography>
+                <Typography component="p" >{email}</Typography>
+            </InformationContainer>
+        </Box>
+
+        < RevenueContainer>
+            <Typography component="h4" >$ {formatCentsToDollars(revenue)}<span>.00</span></Typography>
+            <Typography component="p" >Revenue</Typography>
+        </ RevenueContainer>
+      </ClientContainer>
     )
 }
 
@@ -95,19 +100,16 @@ const ClientList = ({title, placeholder}) => {
 
                 }} 
                 variant="standard"/>
-                <NotificationsNoneIcon sx={{color: 'rgba(216, 194, 149, 1)',fontSize: 30, ml: 2, cursor:'pointer'}}/>
             </Box>
 
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <Typography  variant="h5" component="h2" style={{marginRight: '2rem', fontWeight: 900, fontSize: '1.5rem', fontFamily: 'Lato'}}>{title}</Typography>
-                <Typography variant="body1" component="p" style={{fontSize: '0.8rem', marginLeft: '2rem', marginRight: '0.5rem', color: 'rgba(82, 82, 82, 1)', cursor: 'pointer'}} >  See Full List   </Typography>
-                <ArrowForwardIcon sx={{color: 'rgba(216, 194, 149, 1)', fontSize: 25, cursor: 'pointer'}} />
-            </Box>
+            <SeeAllListContainer>
+                <Typography  component="h2" >{title}</Typography>
+                <Typography component="p" >  See Full List   </Typography>
+                <ArrowForwardIcon />
+            </SeeAllListContainer>
 
-           <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '1rem',}}>
-                <Stack sx={{ width: '85%', height: '300px', 
-                boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-                borderRadius: '20px', overflow: "hidden", overflowY: 'scroll'}} className="">
+           <Box style={{display: 'flex', justifyContent: 'center', alignItems: 'center', mt: '1rem'}}>
+                <ListContainer >
                     {
                         !isLoadingCustomers && (customers?.map((customer, i) => {
                             return(
@@ -115,7 +117,7 @@ const ClientList = ({title, placeholder}) => {
                             )
                         }))
                     }
-                </Stack>
+                </ListContainer>
             </Box>
         </Container> 
     )

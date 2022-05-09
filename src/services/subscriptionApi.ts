@@ -1,5 +1,5 @@
 import moment from "moment";
-import { InputSelectData } from "../components/InputSelect";
+import { InputSelectData } from "../components/common/InputSelect";
 import { CacheTagsEnum } from "../enums/cache-tags-enum";
 import { SubscriptionTypeEnum } from "../enums/subscription-emum";
 import { DateHelper } from "../helpers/dateHelper";

@@ -133,7 +133,7 @@ const ChartContainer= () => {
         <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem'}}>
             {
                 chartTimeOptions && chartTimeOptions.map((item, i) => (
-                <div>
+                <div key={i}>
                     {
                         item === chartTime ? (<CharTimeButton key={i} variant="text" onClick={()=> setChartTime(item)}>{item}</CharTimeButton>) :
                        (<SelectedCharTimeButton key={i} variant="text" onClick={()=> setChartTime(item)}>{item}</SelectedCharTimeButton>)

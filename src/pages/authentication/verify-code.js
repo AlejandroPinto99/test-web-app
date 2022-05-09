@@ -6,7 +6,7 @@ import { Box, Card, Container, Divider, Link, Typography } from '@mui/material';
 import { GuestGuard } from '../../components/authentication/guest-guard';
 import { AuthBanner } from '../../components/authentication/auth-banner';
 import { AmplifyVerifyCode } from '../../components/authentication/amplify-verify-code';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/common/logo';
 import { useAuth } from '../../hooks/use-auth';
 import { gtm } from '../../lib/gtm';
 

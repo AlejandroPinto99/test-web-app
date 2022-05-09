@@ -9,7 +9,7 @@ import { AmplifyRegister } from '../../components/authentication/amplify-registe
 import { Auth0Register } from '../../components/authentication/auth0-register';
 import { FirebaseRegister } from '../../components/authentication/firebase-register';
 import { JWTRegister } from '../../components/authentication/jwt-register';
-import { Logo } from '../../components/logo';
+import { Logo } from '../../components/common/logo';
 import { useAuth } from '../../hooks/use-auth';
 import { gtm } from '../../lib/gtm';
 

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Box, Drawer, useMediaQuery } from '@mui/material';
 import { DocsSidebarSection } from './docs-sidebar-section';
-import { Scrollbar } from '../scrollbar';
+import { Scrollbar } from '../common/scrollbar';
 
 const sections = [
   {

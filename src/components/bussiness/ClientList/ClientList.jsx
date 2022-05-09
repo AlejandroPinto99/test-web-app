@@ -22,6 +22,7 @@ import { useGetCustomersQuery, useGetCustomerQuery }  from '../../../services/cu
 //Fonts
 import {createTheme} from '@material-ui/core/styles'
 
+
 //Style
 import { ClientContainer, InitialsContainer, InformationContainer,  RevenueContainer, SeeAllListContainer, ListContainer } from './styles'
 
